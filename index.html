@@ -2,6 +2,7 @@
 <html lang="de" data-lang="de">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ferienwohnung Brülisauer</title>
 <meta name="description" content="Ferienwohnung in Brülisau im Alpstein: 2 Schlafzimmer, bis 7 Gäste, direkt anfragen. Holiday apartment in Brülisau, Appenzell Innerrhoden.">
@@ -70,7 +71,7 @@ a { color: var(--link); }
 .site-head { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .head-in { display: flex; align-items: center; justify-content: space-between; gap: 18px; height: 64px; }
 .brand { font-family: var(--font-display); font-size: 1.2rem; color: var(--fg); text-decoration: none; white-space: nowrap; }
-.nav { display: flex; align-items: center; gap: 22px; font-size: .95rem; font-weight: 500; }
+.nav { display: flex; align-items: center; gap: 20px; font-size: .95rem; font-weight: 500; }
 .nav a { color: var(--fg); text-decoration: none; }
 .nav a:hover { color: var(--link); }
 .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
@@ -200,7 +201,30 @@ footer a { color: #fff; }
 .foot-grid p { max-width: 44ch; }
 .copy { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: .85rem; color: rgba(255,255,255,.55); }
 
-@media (max-width: 900px) {
+/* Seiten-Register */
+.js .page { display: none; }
+.js .page.active { display: block; }
+.page { min-height: 62vh; }
+.nav a:not(.btn)[aria-current="page"] { color: var(--link); box-shadow: 0 2px 0 var(--link); }
+.tiles { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 34px; border-top: 2px solid var(--fg); }
+.tile { display: block; padding: 22px 22px 26px 0; color: inherit; text-decoration: none; }
+.tile + .tile { padding-left: 22px; border-left: 1px solid var(--line); }
+.tile .ic { color: var(--link); width: 2em; height: 2em; margin-bottom: 10px; }
+.tile h3 { margin-bottom: 4px; }
+.tile p { margin: 0; color: var(--muted); }
+.tile:hover h3 { color: var(--link); text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 1000px) {
+  .tiles { grid-template-columns: repeat(2, 1fr); }
+  .tile:nth-child(3) { padding-left: 0; border-left: 0; }
+  .tile:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 760px) {
+  .tiles { grid-template-columns: 1fr; }
+  .tile + .tile { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .tile { padding-right: 0; }
+}
+@media (max-width: 1000px) {
   .burger { display: inline-flex; }
   .nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px 20px 22px; }
   .nav.open { display: flex; }
@@ -254,12 +278,13 @@ footer a { color: #fff; }
 
 <header class="site-head">
   <div class="wrap head-in">
-    <a class="brand" href="#top">Ferienwohnung Brülisauer</a>
+    <a class="brand" href="#start">Ferienwohnung Brülisauer</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menü / Menu"><svg class="ic"><use href="#i-menu"/></svg></button>
     <nav class="nav" id="nav">
+      <a href="#start">Start</a>
       <a href="#wohnung"><span class="de">Wohnung</span><span class="en">Apartment</span></a>
       <a href="#lage"><span class="de">Lage</span><span class="en">Location</span></a>
-      <a href="#preise"><span class="de">Preise</span><span class="en">Prices</span></a>
+      <a href="#preise"><span class="de">Preise und Infos</span><span class="en">Prices and info</span></a>
       <a href="#kalender"><span class="de">Verfügbarkeit</span><span class="en">Availability</span></a>
       <span class="lang" role="group" aria-label="Sprache / Language">
         <button type="button" data-set="de" aria-pressed="true">DE</button>
@@ -271,6 +296,7 @@ footer a { color: #fff; }
 </header>
 
 <main id="top">
+  <div class="page" data-page="start">
   <div class="hero">
     <div class="hero-media" aria-hidden="true">
       <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax slice">
@@ -306,7 +332,22 @@ footer a { color: #fff; }
     </div>
   </div>
 
-  <section class="sec" id="wohnung">
+  <section class="sec">
+    <div class="wrap">
+      <h2><span class="de">Entdecke die Ferienwohnung</span><span class="en">Discover the apartment</span></h2>
+      <p class="lead"><span class="de">Hier findest du alles für die Planung deines Aufenthalts in Brülisau.</span><span class="en">Everything you need to plan your stay in Brülisau.</span></p>
+      <div class="tiles">
+        <a class="tile" href="#wohnung"><svg class="ic"><use href="#i-door"/></svg><h3><span class="de">Wohnung</span><span class="en">Apartment</span></h3><p><span class="de">Zimmer, Betten und Ausstattung</span><span class="en">Rooms, beds and amenities</span></p></a>
+        <a class="tile" href="#lage"><svg class="ic"><use href="#i-mountain"/></svg><h3><span class="de">Lage</span><span class="en">Location</span></h3><p><span class="de">Wandern und Ausflüge im Alpstein</span><span class="en">Hiking and day trips in the Alpstein</span></p></a>
+        <a class="tile" href="#preise"><svg class="ic"><use href="#i-check"/></svg><h3><span class="de">Preise und Infos</span><span class="en">Prices and info</span></h3><p><span class="de">Preise, Zeiten und häufige Fragen</span><span class="en">Prices, times and FAQ</span></p></a>
+        <a class="tile" href="#kalender"><svg class="ic"><use href="#i-calendar"/></svg><h3><span class="de">Verfügbarkeit</span><span class="en">Availability</span></h3><p><span class="de">Freie Tage im Kalender</span><span class="en">Free dates in the calendar</span></p></a>
+      </div>
+    </div>
+  </section>
+  </div>
+
+  <div class="page" data-page="wohnung">
+  <section class="sec">
     <div class="wrap">
       <div class="two">
         <div>
@@ -341,7 +382,7 @@ footer a { color: #fff; }
     </div>
   </section>
 
-  <section class="sec" id="ausstattung">
+  <section class="sec">
     <div class="wrap">
       <h2><span class="de">Ausstattung</span><span class="en">Amenities</span></h2>
       <p class="note"><span class="todo"><span class="de">Platzhalter, bitte mit der echten Ausstattung ersetzen.</span><span class="en">Placeholder, please replace with the real amenities.</span></span></p>
@@ -362,7 +403,10 @@ footer a { color: #fff; }
     </div>
   </section>
 
-  <section class="sec tint" id="lage">
+  </div>
+
+  <div class="page" data-page="lage">
+  <section class="sec">
     <div class="wrap">
       <div class="two">
         <div>
@@ -382,7 +426,10 @@ footer a { color: #fff; }
     </div>
   </section>
 
-  <section class="sec" id="preise">
+  </div>
+
+  <div class="page" data-page="preise">
+  <section class="sec">
     <div class="wrap">
       <div class="two" style="align-items:start">
         <div>
@@ -407,7 +454,10 @@ footer a { color: #fff; }
     </div>
   </section>
 
-  <section class="sec tint" id="kalender">
+  </div>
+
+  <div class="page" data-page="kalender">
+  <section class="sec tint">
     <div class="wrap">
       <h2><span class="de">Freie und belegte Tage</span><span class="en">Free and booked dates</span></h2>
       <p class="lead"><span class="de">Wähle Anreise und Abreise im Kalender. Die Daten werden in die Anfrage übernommen.</span><span class="en">Pick your arrival and departure in the calendar. The dates are carried over to your enquiry.</span></p>
@@ -431,7 +481,10 @@ footer a { color: #fff; }
     </div>
   </section>
 
-  <section class="sec" id="anfrage">
+  </div>
+
+  <div class="page" data-page="anfrage">
+  <section class="sec">
     <div class="wrap ask">
       <div>
         <h2><span class="de">Unverbindlich anfragen</span><span class="en">Send a non-binding enquiry</span></h2>
@@ -476,17 +529,18 @@ footer a { color: #fff; }
     </div>
   </section>
 
-  <section class="sec tint" id="fragen">
+  <section class="sec tint">
     <div class="wrap">
       <h2><span class="de">Häufige Fragen</span><span class="en">Frequently asked questions</span></h2>
       <div class="faq">
-        <details><summary><span><span class="de">Wie reserviere ich die Wohnung?</span><span class="en">How do I reserve the apartment?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Schicke uns oben eine Anfrage mit deinen Reisedaten. Wir antworten persönlich per E-Mail, und die Reservierung gilt, sobald du bestätigt hast.</span><span class="en">Send us an enquiry above with your dates. We reply personally by email, and the reservation applies once you have confirmed.</span></p></details>
+        <details><summary><span><span class="de">Wie reserviere ich die Wohnung?</span><span class="en">How do I reserve the apartment?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Schicke uns über «Anfragen» eine Nachricht mit deinen Reisedaten. Wir antworten persönlich per E-Mail, und die Reservierung gilt, sobald du bestätigt hast.</span><span class="en">Send us an enquiry on the “Enquire” page with your dates. We reply personally by email, and the reservation applies once you have confirmed.</span></p></details>
         <details><summary><span><span class="de">Für wie viele Personen ist die Wohnung?</span><span class="en">How many people does the apartment sleep?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Bis zu sieben Gäste: fünf in Betten (zwei Doppelbetten und ein Einzelbett) und zwei auf der Couch.</span><span class="en">Up to seven guests: five in beds (two double beds and one single bed) and two on the sofa.</span></p></details>
         <details><summary><span><span class="de">Wann ist Check-in und Check-out?</span><span class="en">When are check-in and check-out?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="todo"><span class="de">Zeiten folgen.</span><span class="en">Times to follow.</span></span></p></details>
         <details><summary><span><span class="de">Sind Haustiere erlaubt?</span><span class="en">Are pets allowed?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Haustiere sind nach Absprache möglich. Schreib uns dazu bitte in deiner Anfrage.</span><span class="en">Pets are possible on request. Please mention it in your enquiry.</span></p></details>
       </div>
     </div>
   </section>
+  </div>
 </main>
 
 <footer>
@@ -683,8 +737,22 @@ footer a { color: #fff; }
     try { navigator.clipboard.writeText(text).then(done, fallback); } catch (err) { fallback(); }
   });
 
+  var PAGES = ["start", "wohnung", "lage", "preise", "kalender", "anfrage"];
+  function showPage() {
+    var id = (location.hash || "").replace("#", "");
+    if (PAGES.indexOf(id) < 0) id = "start";
+    document.querySelectorAll(".page").forEach(function (p) { p.classList.toggle("active", p.dataset.page === id); });
+    document.querySelectorAll(".nav a[href^='#']").forEach(function (a) {
+      if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    window.scrollTo(0, 0);
+    if (id === "kalender") render();
+  }
+  window.addEventListener("hashchange", showPage);
+
   document.getElementById("year").textContent = new Date().getFullYear();
   setLang(lang);
+  showPage();
 })();
 </script>
 </body>
