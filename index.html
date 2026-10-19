@@ -89,7 +89,8 @@ a { color: var(--link); }
 .hero { position: relative; color: #fff; overflow: hidden; background: linear-gradient(165deg, var(--hero-a), var(--hero-b)); }
 .hero-media { position: absolute; inset: 0; }
 .hero-media svg, .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,22,21,.45) 0%, rgba(6,22,21,.72) 100%); }
+.hero-media img { object-position: center 55%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,22,21,.55) 0%, rgba(6,22,21,.2) 70%), linear-gradient(180deg, rgba(6,22,21,.3) 0%, rgba(6,22,21,.6) 100%); }
 .hero-in { position: relative; z-index: 1; padding-top: clamp(72px, 13vw, 150px); padding-bottom: clamp(96px, 14vw, 150px); }
 .hero h1 { max-width: 15ch; }
 .hero p { font-size: 1.2rem; color: rgba(255,255,255,.86); margin: 20px 0 30px; max-width: 46ch; }
@@ -309,7 +310,7 @@ footer a { color: #fff; }
         <path d="M0 480L90 430 190 470 320 380 430 450 560 360 690 450 800 400 930 470 1060 410 1200 470V600H0z" fill="#12413f"/>
         <path d="M0 540L140 500 260 535 400 490 560 540 720 500 880 545 1040 505 1200 540V600H0z" fill="#0b2d2b"/>
       </svg>
-      <img src="bilder/hero.jpg" alt="" onerror="this.remove()">
+      <img src="hero.jpg" alt="" onerror="this.remove()">
     </div>
     <div class="wrap hero-in">
       <h1><span class="de">Ferien im Alpstein, mit Platz für alle</span><span class="en">Holidays in the Alpstein, with room for everyone</span></h1>
@@ -358,7 +359,7 @@ footer a { color: #fff; }
             <div><svg class="ic"><use href="#i-chat"/></svg><div><b><span class="de">Direkt beim Gastgeber anfragen</span><span class="en">Enquire directly with your host</span></b><span class="t"><span class="de">Du bekommst eine persönliche Antwort, ohne Online-Buchungsportal.</span><span class="en">You get a personal reply, without a booking portal.</span></span></div></div>
           </div>
         </div>
-        <div class="ph" style="cursor:default"><div class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Foto folgt</span><span class="en">Photo coming soon</span></span></div><img src="bilder/wohnzimmer.jpg" alt="Wohnzimmer / Living room" onerror="this.parentNode.classList.add('noimg');this.remove()"></div>
+        <div class="ph" style="cursor:default"><div class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Foto folgt</span><span class="en">Photo coming soon</span></span></div><img src="wohnzimmer.jpg" alt="Wohnzimmer / Living room" onerror="this.parentNode.classList.add('noimg');this.remove()"></div>
       </div>
 
       <div class="rooms">
@@ -373,11 +374,11 @@ footer a { color: #fff; }
     <div class="wrap">
       <h2><span class="de">Ein Blick hinein</span><span class="en">A look inside</span></h2>
       <div class="gal">
-        <button type="button" class="ph big" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Wohnzimmer</span><span class="en">Living room</span></span></span><img src="bilder/galerie-1.jpg" alt="Wohnzimmer / Living room" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
-        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Küche</span><span class="en">Kitchen</span></span></span><img src="bilder/galerie-2.jpg" alt="Küche / Kitchen" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
-        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Schlafzimmer 1</span><span class="en">Bedroom 1</span></span></span><img src="bilder/galerie-3.jpg" alt="Schlafzimmer 1 / Bedroom 1" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
-        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Schlafzimmer 2</span><span class="en">Bedroom 2</span></span></span><img src="bilder/galerie-4.jpg" alt="Schlafzimmer 2 / Bedroom 2" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
-        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Badezimmer</span><span class="en">Bathroom</span></span></span><img src="bilder/galerie-5.jpg" alt="Badezimmer / Bathroom" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+        <button type="button" class="ph big" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Wohnzimmer</span><span class="en">Living room</span></span></span><img src="galerie-1.jpg" alt="Wohnzimmer / Living room" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Küche</span><span class="en">Kitchen</span></span></span><img src="galerie-2.jpg" alt="Küche / Kitchen" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Schlafzimmer 1</span><span class="en">Bedroom 1</span></span></span><img src="galerie-3.jpg" alt="Schlafzimmer 1 / Bedroom 1" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Schlafzimmer 2</span><span class="en">Bedroom 2</span></span></span><img src="galerie-4.jpg" alt="Schlafzimmer 2 / Bedroom 2" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Badezimmer</span><span class="en">Bathroom</span></span></span><img src="galerie-5.jpg" alt="Badezimmer / Bathroom" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
       </div>
     </div>
   </section>
@@ -413,7 +414,7 @@ footer a { color: #fff; }
           <h2><span class="de">Brülisau am Fuss des Alpsteins</span><span class="en">Brülisau at the foot of the Alpstein</span></h2>
           <p class="lead"><span class="de">Brülisau liegt im Kanton Appenzell Innerrhoden. Von hier aus erreichst du Aussichtspunkte, Bergseen und Wanderwege im Alpstein.</span><span class="en">Brülisau is in the canton of Appenzell Innerrhoden. From here you can reach viewpoints, mountain lakes and hiking trails in the Alpstein.</span></p>
         </div>
-        <div class="ph" style="cursor:default"><div class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Foto der Umgebung folgt</span><span class="en">Photo of the surroundings coming soon</span></span></div><img src="bilder/umgebung.jpg" alt="Umgebung / Surroundings" onerror="this.parentNode.classList.add('noimg');this.remove()"></div>
+        <div class="ph" style="cursor:default"><div class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Foto der Umgebung folgt</span><span class="en">Photo of the surroundings coming soon</span></span></div><img src="umgebung.jpg" alt="Umgebung / Surroundings" onerror="this.parentNode.classList.add('noimg');this.remove()"></div>
       </div>
       <div class="spots">
         <div class="spot"><svg class="ic"><use href="#i-cable"/></svg><div><h3>Hoher Kasten</h3><p><span class="de">Die Luftseilbahn ab Brülisau bringt dich zu einem der bekanntesten Aussichtspunkte im Alpstein.</span><span class="en">The cable car from Brülisau takes you to one of the best-known viewpoints in the Alpstein.</span></p></div></div>
