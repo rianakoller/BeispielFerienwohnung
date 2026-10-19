@@ -1,0 +1,692 @@
+#Ferienwohnung Brülisau
+<!doctype html>
+<html lang="de" data-lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferienwohnung Brülisauer</title>
+<meta name="description" content="Ferienwohnung in Brülisau im Alpstein: 2 Schlafzimmer, bis 7 Gäste, direkt anfragen. Holiday apartment in Brülisau, Appenzell Innerrhoden.">
+<meta name="theme-color" content="#153b38">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Aufbau: dunkler Titelbereich mit Bergsilhouette (oder Foto), danach Wohnung, Galerie, Lage, Preise, Kalender, Anfrage, Fragen.
+   Abschnitte werden durch Hintergrundflächen getrennt, nicht durch Linien. Gold nur für die Anfrage-Buttons. */
+:root {
+  color-scheme: light;
+  --bg: #f2f4f1;
+  --surface: #ffffff;
+  --tint: #e3ebe8;
+  --fg: #14282a;
+  --muted: #566b6c;
+  --line: #d5ded9;
+  --brand: #153b38;
+  --brand-fg: #ffffff;
+  --link: #1b6560;
+  --gold: #d9a52e;
+  --gold-fg: #261b04;
+  --booked: #ead6d2;
+  --booked-fg: #8a4b45;
+  --hero-a: #0d2927;
+  --hero-b: #1f5f5b;
+  --foot: #0f2b29;
+  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0d1a1b; --surface: #152527; --tint: #172b2c; --fg: #e4eeeb; --muted: #9bb1af; --line: #274041;
+    --brand: #6cc2b8; --brand-fg: #0a1615; --link: #86d4ca; --booked: #3b2a28; --booked-fg: #e0a9a2; --foot: #09181a;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0d1a1b; --surface: #152527; --tint: #172b2c; --fg: #e4eeeb; --muted: #9bb1af; --line: #274041;
+  --brand: #6cc2b8; --brand-fg: #0a1615; --link: #86d4ca; --booked: #3b2a28; --booked-fg: #e0a9a2; --foot: #09181a;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+html[data-lang="en"] .de, html[data-lang="de"] .en { display: none; }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+h1 { font-size: clamp(2.5rem, 7vw, 4.6rem); }
+h2 { font-size: clamp(1.9rem, 4.4vw, 2.8rem); margin-bottom: 18px; }
+h3 { font-size: 1.25rem; margin-bottom: 6px; }
+p { margin: 0 0 14px; max-width: 62ch; }
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.sec { padding: clamp(52px, 8vw, 96px) 0; scroll-margin-top: 64px; }
+.sec.tint { background: var(--tint); }
+.lead { font-size: 1.15rem; color: var(--muted); }
+.note { font-size: .9rem; color: var(--muted); }
+.todo { background: color-mix(in srgb, var(--gold) 30%, transparent); border-radius: 3px; padding: 0 4px; }
+.ic { width: 1.5em; height: 1.5em; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* Kopfzeile */
+.site-head { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.head-in { display: flex; align-items: center; justify-content: space-between; gap: 18px; height: 64px; }
+.brand { font-family: var(--font-display); font-size: 1.2rem; color: var(--fg); text-decoration: none; white-space: nowrap; }
+.nav { display: flex; align-items: center; gap: 22px; font-size: .95rem; font-weight: 500; }
+.nav a { color: var(--fg); text-decoration: none; }
+.nav a:hover { color: var(--link); }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.lang button { font: inherit; font-size: .82rem; font-weight: 600; background: transparent; color: var(--fg); border: 0; padding: 4px 11px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--brand); color: var(--brand-fg); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; font-weight: 700; background: var(--gold); color: var(--gold-fg); border: 0; border-radius: 8px; padding: 12px 24px; text-decoration: none; cursor: pointer; }
+.btn:hover { filter: brightness(1.06); }
+.btn:disabled { opacity: .6; cursor: wait; }
+.btn.small { padding: 8px 16px; font-size: .92rem; }
+.btn.dark { background: var(--brand); color: var(--brand-fg); }
+.btn.line { background: transparent; color: var(--fg); border: 1.5px solid currentColor; }
+.burger { display: none; background: transparent; border: 1px solid var(--line); color: var(--fg); border-radius: 8px; padding: 6px; cursor: pointer; }
+
+/* Titelbereich */
+.hero { position: relative; color: #fff; overflow: hidden; background: linear-gradient(165deg, var(--hero-a), var(--hero-b)); }
+.hero-media { position: absolute; inset: 0; }
+.hero-media svg, .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,22,21,.45) 0%, rgba(6,22,21,.72) 100%); }
+.hero-in { position: relative; z-index: 1; padding-top: clamp(72px, 13vw, 150px); padding-bottom: clamp(96px, 14vw, 150px); }
+.hero h1 { max-width: 15ch; }
+.hero p { font-size: 1.2rem; color: rgba(255,255,255,.86); margin: 20px 0 30px; max-width: 46ch; }
+.hero .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero .btn.line { color: #fff; }
+.glance { position: relative; z-index: 2; margin-top: -52px; }
+.glance-in { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--surface); border-radius: 12px; box-shadow: 0 10px 34px rgba(8,30,28,.16); }
+.glance-in > div { display: flex; align-items: center; gap: 14px; padding: 20px 22px; min-width: 0; }
+.glance-in > div + div { border-left: 1px solid var(--line); }
+.glance strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1.1; }
+.glance span.l { font-size: .9rem; color: var(--muted); line-height: 1.3; display: block; }
+.glance .ic { color: var(--link); width: 1.9em; height: 1.9em; }
+
+/* Wohnung */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.points { display: grid; gap: 20px; margin-top: 26px; }
+.points div { display: flex; gap: 14px; }
+.points .ic { color: var(--link); margin-top: 3px; }
+.points b { display: block; font-weight: 700; }
+.points span.t { color: var(--muted); }
+.rooms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 40px; border-top: 2px solid var(--fg); }
+.room { padding: 22px 24px 4px 0; }
+.room + .room { padding-left: 24px; border-left: 1px solid var(--line); }
+.room .beds { display: flex; gap: 6px; color: var(--link); margin-bottom: 8px; }
+.room p { color: var(--muted); margin: 0 0 12px; }
+
+/* Fotos */
+.ph { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 10px; overflow: hidden; aspect-ratio: 4 / 3; cursor: zoom-in; font: inherit; color: var(--muted); background: linear-gradient(140deg, var(--tint), color-mix(in srgb, var(--link) 20%, var(--tint))); }
+.ph.noimg { cursor: default; }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ph .fb { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 4px; font-size: .88rem; padding: 10px; text-align: center; }
+.ph .fb .ic { width: 2em; height: 2em; opacity: .7; }
+.gal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+.gal .big { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+.lb { position: fixed; inset: 0; z-index: 100; background: rgba(5,16,15,.92); display: grid; place-items: center; padding: 20px; }
+.lb img { max-width: 100%; max-height: 90vh; border-radius: 8px; }
+.lb button { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,.14); color: #fff; border: 0; border-radius: 8px; padding: 8px; cursor: pointer; }
+
+/* Ausstattung und Lage */
+.amen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 28px; }
+.amen h3 { font-size: 1.1rem; margin-bottom: 10px; }
+.amen ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.amen li { display: flex; gap: 10px; align-items: flex-start; }
+.amen li .ic { width: 1.2em; height: 1.2em; color: var(--link); margin-top: 4px; }
+.spots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px 40px; margin-top: 28px; }
+.spot { display: flex; gap: 16px; }
+.spot .ic { color: var(--link); width: 2em; height: 2em; margin-top: 2px; }
+.spot p { color: var(--muted); margin: 0; }
+
+/* Preise */
+table.price { width: 100%; border-collapse: collapse; }
+table.price td { padding: 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.price td:last-child { text-align: right; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; padding-left: 16px; }
+.rules { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 8px; }
+.rules li { display: flex; gap: 10px; }
+.rules .ic { width: 1.2em; height: 1.2em; color: var(--link); margin-top: 4px; }
+
+/* Kalender */
+.cal { background: var(--surface); border-radius: 12px; padding: clamp(16px, 3vw, 28px); box-shadow: 0 6px 24px rgba(8,30,28,.08); }
+.cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.cal-head button { background: transparent; color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer; display: inline-flex; }
+.cal-head button:disabled { opacity: .35; cursor: default; }
+.months { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+.mon h3 { text-align: center; font-family: var(--font-body); font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+.grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.dow { text-align: center; font-size: .75rem; color: var(--muted); padding: 4px 0; font-weight: 600; }
+.day { aspect-ratio: 1; display: grid; place-items: center; font: inherit; font-size: .92rem; font-variant-numeric: tabular-nums; border: 0; border-radius: 6px; background: transparent; color: var(--fg); cursor: pointer; padding: 0; min-width: 0; }
+.day:hover:not(:disabled) { background: color-mix(in srgb, var(--link) 18%, transparent); }
+.day:disabled { cursor: default; opacity: .35; }
+.day.booked { background: var(--booked); color: var(--booked-fg); text-decoration: line-through; opacity: 1; }
+.day.inrange { background: color-mix(in srgb, var(--link) 24%, transparent); border-radius: 0; }
+.day.edge { background: var(--brand); color: var(--brand-fg); opacity: 1; }
+.legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; font-size: .86rem; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.sel { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+.sel p { margin: 0; font-weight: 600; }
+
+/* Anfrage */
+.ask { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+.steps { margin: 22px 0 0; padding: 0; list-style: none; display: grid; gap: 16px; }
+.steps li { display: flex; gap: 14px; }
+.steps .ic { color: var(--link); margin-top: 3px; }
+.mailbox { margin-top: 22px; padding: 14px 16px; background: var(--tint); border-radius: 8px; word-break: break-word; }
+.formcard { background: var(--surface); border-radius: 12px; padding: clamp(18px, 3vw, 32px); box-shadow: 0 6px 24px rgba(8,30,28,.08); }
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+form .full { grid-column: 1 / -1; }
+label { display: grid; gap: 5px; font-weight: 600; font-size: .92rem; min-width: 0; }
+input, select, textarea { font: inherit; font-weight: 400; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 11px 12px; width: 100%; min-width: 0; }
+textarea { min-height: 120px; resize: vertical; }
+.out { margin-top: 18px; padding: 18px; border-radius: 10px; border: 1.5px solid var(--link); }
+.out pre { white-space: pre-wrap; word-break: break-word; font-family: inherit; background: var(--bg); padding: 12px; border-radius: 8px; margin: 10px 0; }
+.out .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+/* Fragen */
+details { border-bottom: 1px solid var(--line); }
+details:first-of-type { border-top: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; padding: 18px 0; font-weight: 600; display: flex; justify-content: space-between; gap: 16px; align-items: center; }
+summary::-webkit-details-marker { display: none; }
+summary .ic { transition: transform .2s; }
+details[open] summary .ic { transform: rotate(180deg); }
+details p { color: var(--muted); padding-bottom: 6px; }
+.faq { max-width: 760px; }
+
+/* Fuss */
+footer { background: var(--foot); color: rgba(255,255,255,.78); padding: 56px 0 40px; font-size: .95rem; }
+footer h3 { color: #fff; font-size: 1.1rem; }
+footer a { color: #fff; }
+.foot-grid { display: grid; grid-template-columns: 1.2fr 1fr 1.4fr; gap: 36px; }
+.foot-grid p { max-width: 44ch; }
+.copy { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: .85rem; color: rgba(255,255,255,.55); }
+
+@media (max-width: 900px) {
+  .burger { display: inline-flex; }
+  .nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px 20px 22px; }
+  .nav.open { display: flex; }
+  .head-in { position: relative; }
+  .glance-in { grid-template-columns: repeat(2, 1fr); }
+  .glance-in > div:nth-child(3) { border-left: 0; }
+  .glance-in > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .two, .ask, .foot-grid, .amen, .spots, form, .months { grid-template-columns: 1fr; }
+  .rooms { grid-template-columns: 1fr; }
+  .room + .room { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .room { padding-right: 0; }
+  .gal { grid-template-columns: 1fr 1fr; }
+  .gal .big { grid-column: span 2; grid-row: auto; aspect-ratio: 16 / 10; }
+  .glance-in > div { padding: 16px 14px; gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } summary .ic { transition: none; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.5"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.8 0 5 2.2 5 5"/></symbol>
+  <symbol id="i-door" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 12h16M12 3v18"/></symbol>
+  <symbol id="i-sofa" viewBox="0 0 24 24"><path d="M5 11V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v3M3 13a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v5H3zM6 18v2M18 18v2"/></symbol>
+  <symbol id="i-mountain" viewBox="0 0 24 24"><path d="M2 19l6-10 4 6 2-3 8 7z"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10.5 10.5 0 0 1 14 0M8.5 16a5.5 5.5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></symbol>
+  <symbol id="i-kitchen" viewBox="0 0 24 24"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 1.5-3 4-3 7h3v11"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 16l1.5-5.5A2 2 0 0 1 8.4 9h7.2a2 2 0 0 1 1.9 1.5L19 16M3 16h18v3H3zM7 19v1.5M17 19v1.5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></symbol>
+  <symbol id="i-paw" viewBox="0 0 24 24"><circle cx="6" cy="10" r="1.8"/><circle cx="10" cy="6" r="1.8"/><circle cx="14" cy="6" r="1.8"/><circle cx="18" cy="10" r="1.8"/><path d="M12 12c-3 0-5 3-5 5 0 2 2 2.5 5 2.5s5-.5 5-2.5c0-2-2-5-5-5z"/></symbol>
+  <symbol id="i-nosmoke" viewBox="0 0 24 24"><path d="M3 17h13v3H3zM19 17v3M21 14c0-2-2-2-2-4M4 4l16 16"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-cable" viewBox="0 0 24 24"><path d="M3 5l18 4M12 7v4"/><rect x="8" y="11" width="8" height="7" rx="1.5"/></symbol>
+  <symbol id="i-water" viewBox="0 0 24 24"><path d="M3 10c3-3 6 3 9 0s6 3 9 0M3 15c3-3 6 3 9 0s6 3 9 0"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 3v18M4 7.5l16 9M20 7.5l-16 9"/></symbol>
+  <symbol id="i-village" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9H3zM9 20v-6h6v6"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M3 17l5-4 4 3 3-2 6 4"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+</svg>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="#top">Ferienwohnung Brülisauer</a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menü / Menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+    <nav class="nav" id="nav">
+      <a href="#wohnung"><span class="de">Wohnung</span><span class="en">Apartment</span></a>
+      <a href="#lage"><span class="de">Lage</span><span class="en">Location</span></a>
+      <a href="#preise"><span class="de">Preise</span><span class="en">Prices</span></a>
+      <a href="#kalender"><span class="de">Verfügbarkeit</span><span class="en">Availability</span></a>
+      <span class="lang" role="group" aria-label="Sprache / Language">
+        <button type="button" data-set="de" aria-pressed="true">DE</button>
+        <button type="button" data-set="en" aria-pressed="false">EN</button>
+      </span>
+      <a class="btn small" href="#anfrage"><span class="de">Anfragen</span><span class="en">Enquire</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="hero-media" aria-hidden="true">
+      <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d2927"/><stop offset=".75" stop-color="#2b7770"/><stop offset="1" stop-color="#4f9a8f"/></linearGradient>
+        </defs>
+        <rect width="1200" height="600" fill="url(#sky)"/>
+        <circle cx="930" cy="190" r="46" fill="#f5d98a" opacity=".85"/>
+        <path d="M0 420L120 330 200 380 330 230 420 320 520 250 640 360 740 290 860 380 980 300 1100 380 1200 330V600H0z" fill="#1c5753" opacity=".75"/>
+        <path d="M0 480L90 430 190 470 320 380 430 450 560 360 690 450 800 400 930 470 1060 410 1200 470V600H0z" fill="#12413f"/>
+        <path d="M0 540L140 500 260 535 400 490 560 540 720 500 880 545 1040 505 1200 540V600H0z" fill="#0b2d2b"/>
+      </svg>
+      <img src="bilder/hero.jpg" alt="" onerror="this.remove()">
+    </div>
+    <div class="wrap hero-in">
+      <h1><span class="de">Ferien im Alpstein, mit Platz für alle</span><span class="en">Holidays in the Alpstein, with room for everyone</span></h1>
+      <p><span class="de">Zwei Schlafzimmer, bis zu sieben Gäste und die Wanderwege von Brülisau direkt vor der Tür.</span><span class="en">Two bedrooms, up to seven guests and the hiking trails of Brülisau right on your doorstep.</span></p>
+      <div class="btns">
+        <a class="btn" href="#anfrage"><span class="de">Jetzt anfragen</span><span class="en">Send an enquiry</span></a>
+        <a class="btn line" href="#kalender"><span class="de">Freie Tage ansehen</span><span class="en">See free dates</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="glance">
+    <div class="wrap">
+      <div class="glance-in">
+        <div><svg class="ic"><use href="#i-users"/></svg><div><strong>7</strong><span class="l"><span class="de">Gäste maximal</span><span class="en">guests at most</span></span></div></div>
+        <div><svg class="ic"><use href="#i-door"/></svg><div><strong>2</strong><span class="l"><span class="de">Schlafzimmer</span><span class="en">bedrooms</span></span></div></div>
+        <div><svg class="ic"><use href="#i-bed"/></svg><div><strong>5</strong><span class="l"><span class="de">Betten</span><span class="en">beds</span></span></div></div>
+        <div><svg class="ic"><use href="#i-sofa"/></svg><div><strong>+2</strong><span class="l"><span class="de">auf der Couch</span><span class="en">on the sofa</span></span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="sec" id="wohnung">
+    <div class="wrap">
+      <div class="two">
+        <div>
+          <h2><span class="de">Eine Wohnung, in der alle Platz haben</span><span class="en">An apartment with room for everyone</span></h2>
+          <p class="lead"><span class="de">Die möblierte Ferienwohnung eignet sich für Familien und Freundesgruppen. Fünf Gäste schlafen in Betten, zwei weitere auf der Couch.</span><span class="en">The furnished holiday apartment suits families and groups of friends. Five guests sleep in beds, two more on the sofa.</span></p>
+          <div class="points">
+            <div><svg class="ic"><use href="#i-mountain"/></svg><div><b><span class="de">Wandern ab der Haustür</span><span class="en">Hiking from your door</span></b><span class="t"><span class="de">Brülisau ist ein Ausgangspunkt für Touren im Alpstein.</span><span class="en">Brülisau is a starting point for tours in the Alpstein.</span></span></div></div>
+            <div><svg class="ic"><use href="#i-chat"/></svg><div><b><span class="de">Direkt beim Gastgeber anfragen</span><span class="en">Enquire directly with your host</span></b><span class="t"><span class="de">Du bekommst eine persönliche Antwort, ohne Online-Buchungsportal.</span><span class="en">You get a personal reply, without a booking portal.</span></span></div></div>
+          </div>
+        </div>
+        <div class="ph" style="cursor:default"><div class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Foto folgt</span><span class="en">Photo coming soon</span></span></div><img src="bilder/wohnzimmer.jpg" alt="Wohnzimmer / Living room" onerror="this.parentNode.classList.add('noimg');this.remove()"></div>
+      </div>
+
+      <div class="rooms">
+        <div class="room"><div class="beds"><svg class="ic"><use href="#i-bed"/></svg></div><h3><span class="de">Schlafzimmer 1</span><span class="en">Bedroom 1</span></h3><p><span class="de">Ein Doppelbett</span><span class="en">One double bed</span></p></div>
+        <div class="room"><div class="beds"><svg class="ic"><use href="#i-bed"/></svg><svg class="ic"><use href="#i-bed"/></svg></div><h3><span class="de">Schlafzimmer 2</span><span class="en">Bedroom 2</span></h3><p><span class="de">Ein Doppelbett und ein Einzelbett</span><span class="en">One double bed and one single bed</span></p></div>
+        <div class="room"><div class="beds"><svg class="ic"><use href="#i-sofa"/></svg></div><h3><span class="de">Wohnbereich</span><span class="en">Living area</span></h3><p><span class="de">Couch mit Schlafplatz für bis zu zwei weitere Personen</span><span class="en">Sofa with sleeping space for up to two more people</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint" aria-label="Fotos">
+    <div class="wrap">
+      <h2><span class="de">Ein Blick hinein</span><span class="en">A look inside</span></h2>
+      <div class="gal">
+        <button type="button" class="ph big" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Wohnzimmer</span><span class="en">Living room</span></span></span><img src="bilder/galerie-1.jpg" alt="Wohnzimmer / Living room" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Küche</span><span class="en">Kitchen</span></span></span><img src="bilder/galerie-2.jpg" alt="Küche / Kitchen" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Schlafzimmer 1</span><span class="en">Bedroom 1</span></span></span><img src="bilder/galerie-3.jpg" alt="Schlafzimmer 1 / Bedroom 1" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Schlafzimmer 2</span><span class="en">Bedroom 2</span></span></span><img src="bilder/galerie-4.jpg" alt="Schlafzimmer 2 / Bedroom 2" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+        <button type="button" class="ph" data-zoom><span class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Badezimmer</span><span class="en">Bathroom</span></span></span><img src="bilder/galerie-5.jpg" alt="Badezimmer / Bathroom" onerror="this.parentNode.classList.add('noimg');this.remove()"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ausstattung">
+    <div class="wrap">
+      <h2><span class="de">Ausstattung</span><span class="en">Amenities</span></h2>
+      <p class="note"><span class="todo"><span class="de">Platzhalter, bitte mit der echten Ausstattung ersetzen.</span><span class="en">Placeholder, please replace with the real amenities.</span></span></p>
+      <div class="amen">
+        <div><h3><span class="de">Küche</span><span class="en">Kitchen</span></h3><ul>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Voll ausgestattete Küche</span><span class="en">Fully equipped kitchen</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Geschirr und Besteck für 7 Personen</span><span class="en">Dishes and cutlery for 7</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Kaffeemaschine</span><span class="en">Coffee machine</span></li></ul></div>
+        <div><h3><span class="de">Komfort</span><span class="en">Comfort</span></h3><ul>
+          <li><svg class="ic"><use href="#i-check"/></svg>WLAN</li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Bettwäsche und Handtücher</span><span class="en">Bed linen and towels</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Nichtraucherwohnung</span><span class="en">Non-smoking apartment</span></li></ul></div>
+        <div><h3><span class="de">Aussen und Anreise</span><span class="en">Outside and arrival</span></h3><ul>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Parkplatz</span><span class="en">Parking</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Balkon oder Sitzplatz</span><span class="en">Balcony or seating area</span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Haustiere nach Absprache</span><span class="en">Pets on request</span></li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint" id="lage">
+    <div class="wrap">
+      <div class="two">
+        <div>
+          <h2><span class="de">Brülisau am Fuss des Alpsteins</span><span class="en">Brülisau at the foot of the Alpstein</span></h2>
+          <p class="lead"><span class="de">Brülisau liegt im Kanton Appenzell Innerrhoden. Von hier aus erreichst du Aussichtspunkte, Bergseen und Wanderwege im Alpstein.</span><span class="en">Brülisau is in the canton of Appenzell Innerrhoden. From here you can reach viewpoints, mountain lakes and hiking trails in the Alpstein.</span></p>
+        </div>
+        <div class="ph" style="cursor:default"><div class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Foto der Umgebung folgt</span><span class="en">Photo of the surroundings coming soon</span></span></div><img src="bilder/umgebung.jpg" alt="Umgebung / Surroundings" onerror="this.parentNode.classList.add('noimg');this.remove()"></div>
+      </div>
+      <div class="spots">
+        <div class="spot"><svg class="ic"><use href="#i-cable"/></svg><div><h3>Hoher Kasten</h3><p><span class="de">Die Luftseilbahn ab Brülisau bringt dich zu einem der bekanntesten Aussichtspunkte im Alpstein.</span><span class="en">The cable car from Brülisau takes you to one of the best-known viewpoints in the Alpstein.</span></p></div></div>
+        <div class="spot"><svg class="ic"><use href="#i-water"/></svg><div><h3>Sämtisersee</h3><p><span class="de">Eine beliebte Wanderung führt von Brülisau zu diesem Bergsee.</span><span class="en">A popular hike leads from Brülisau to this mountain lake.</span></p></div></div>
+        <div class="spot"><svg class="ic"><use href="#i-mountain"/></svg><div><h3>Säntis</h3><p><span class="de">Mit 2502 Metern ist er der höchste Gipfel im Alpstein.</span><span class="en">At 2,502 metres it is the highest peak in the Alpstein.</span></p></div></div>
+        <div class="spot"><svg class="ic"><use href="#i-village"/></svg><div><h3>Appenzell</h3><p><span class="de">Der Hauptort mit seinem Dorfkern ist eine kurze Fahrt entfernt.</span><span class="en">The main village with its historic centre is a short drive away.</span></p></div></div>
+        <div class="spot"><svg class="ic"><use href="#i-snow"/></svg><div><h3><span class="de">Im Winter</span><span class="en">In winter</span></h3><p><span class="de">Winterwanderwege und Schneeschuhrouten in der Umgebung.</span><span class="en">Winter walking trails and snowshoe routes nearby.</span></p></div></div>
+      </div>
+      <p class="note" style="margin-top:22px"><span class="todo"><span class="de">Hier können noch genaue Entfernungen ergänzt werden, zum Beispiel zur Seilbahn und zum Dorfladen.</span><span class="en">Exact distances can be added here, for example to the cable car and the village shop.</span></span></p>
+    </div>
+  </section>
+
+  <section class="sec" id="preise">
+    <div class="wrap">
+      <div class="two" style="align-items:start">
+        <div>
+          <h2><span class="de">Preise</span><span class="en">Prices</span></h2>
+          <table class="price">
+            <tr><td><span class="de">Pro Nacht, bis 2 Personen</span><span class="en">Per night, up to 2 guests</span></td><td><span class="todo">CHF ___</span></td></tr>
+            <tr><td><span class="de">Pro Nacht, jede weitere Person</span><span class="en">Per night, each additional guest</span></td><td><span class="todo">CHF ___</span></td></tr>
+            <tr><td><span class="de">Endreinigung</span><span class="en">Final cleaning</span></td><td><span class="todo">CHF ___</span></td></tr>
+            <tr><td><span class="de">Kurtaxe pro Person und Nacht</span><span class="en">Tourist tax per person and night</span></td><td><span class="todo">CHF ___</span></td></tr>
+          </table>
+        </div>
+        <div>
+          <h2><span class="de">Gut zu wissen</span><span class="en">Good to know</span></h2>
+          <ul class="rules">
+            <li><svg class="ic"><use href="#i-calendar"/></svg><span class="de">Check-in ab <span class="todo">__:__</span> Uhr, Check-out bis <span class="todo">__:__</span> Uhr</span><span class="en">Check-in from <span class="todo">__:__</span>, check-out by <span class="todo">__:__</span></span></li>
+            <li><svg class="ic"><use href="#i-calendar"/></svg><span class="de">Mindestaufenthalt <span class="todo">__</span> Nächte</span><span class="en">Minimum stay <span class="todo">__</span> nights</span></li>
+            <li><svg class="ic"><use href="#i-nosmoke"/></svg><span class="de">Rauchen in der Wohnung ist nicht erlaubt</span><span class="en">No smoking in the apartment</span></li>
+            <li><svg class="ic"><use href="#i-paw"/></svg><span class="de">Haustiere nach Absprache</span><span class="en">Pets on request</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint" id="kalender">
+    <div class="wrap">
+      <h2><span class="de">Freie und belegte Tage</span><span class="en">Free and booked dates</span></h2>
+      <p class="lead"><span class="de">Wähle Anreise und Abreise im Kalender. Die Daten werden in die Anfrage übernommen.</span><span class="en">Pick your arrival and departure in the calendar. The dates are carried over to your enquiry.</span></p>
+      <div class="cal">
+        <div class="cal-head">
+          <button type="button" id="prev" aria-label="Vorheriger Monat / Previous month"><svg class="ic"><use href="#i-left"/></svg></button>
+          <strong id="calTitle"></strong>
+          <button type="button" id="next" aria-label="Nächster Monat / Next month"><svg class="ic"><use href="#i-right"/></svg></button>
+        </div>
+        <div class="months" id="months"></div>
+        <div class="legend">
+          <span><i style="background:var(--booked)"></i><span class="de">belegt</span><span class="en">booked</span></span>
+          <span><i style="background:var(--brand)"></i><span class="de">deine Auswahl</span><span class="en">your selection</span></span>
+          <span class="todo"><span class="de">Belegte Tage sind noch Beispieldaten</span><span class="en">Booked dates are still sample data</span></span>
+        </div>
+        <div class="sel">
+          <p id="selText"></p>
+          <a class="btn dark" href="#anfrage"><span class="de">Mit diesen Daten anfragen</span><span class="en">Enquire for these dates</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="anfrage">
+    <div class="wrap ask">
+      <div>
+        <h2><span class="de">Unverbindlich anfragen</span><span class="en">Send a non-binding enquiry</span></h2>
+        <p class="lead"><span class="de">Eine Online-Buchung gibt es nicht. Du schreibst uns, und wir antworten persönlich.</span><span class="en">There is no online booking. You write to us and we reply personally.</span></p>
+        <ul class="steps">
+          <li><svg class="ic"><use href="#i-calendar"/></svg><span><span class="de">Du wählst deine Reisedaten und die Anzahl Gäste.</span><span class="en">You choose your dates and the number of guests.</span></span></li>
+          <li><svg class="ic"><use href="#i-mail"/></svg><span><span class="de">Wir melden uns per E-Mail mit Verfügbarkeit und Preis.</span><span class="en">We reply by email with availability and price.</span></span></li>
+          <li><svg class="ic"><use href="#i-check"/></svg><span><span class="de">Du bestätigst, und die Wohnung ist für dich reserviert.</span><span class="en">You confirm and the apartment is reserved for you.</span></span></li>
+        </ul>
+        <div class="mailbox note"><span class="de">Du erreichst uns auch direkt:</span><span class="en">You can also reach us directly:</span><br><strong style="color:var(--fg)">ferienwohnungbruelisauer@gmail.com</strong></div>
+      </div>
+      <div class="formcard">
+        <form id="form">
+          <label><span><span class="de">Name</span><span class="en">Name</span></span><input id="f-name" required autocomplete="name"></label>
+          <label><span>E-Mail</span><input id="f-mail" type="email" required autocomplete="email"></label>
+          <label><span><span class="de">Anreise</span><span class="en">Arrival</span></span><input id="f-from" type="date" required></label>
+          <label><span><span class="de">Abreise</span><span class="en">Departure</span></span><input id="f-to" type="date" required></label>
+          <label><span><span class="de">Anzahl Gäste</span><span class="en">Number of guests</span></span>
+            <select id="f-pers"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+          <label><span><span class="de">Telefon (optional)</span><span class="en">Phone (optional)</span></span><input id="f-tel" type="tel" autocomplete="tel"></label>
+          <label class="full"><span><span class="de">Nachricht</span><span class="en">Message</span></span><textarea id="f-msg"></textarea></label>
+          <input type="checkbox" id="f-bot" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+          <div class="full"><button class="btn" id="submitBtn" type="submit"><span class="de">Anfrage vorbereiten</span><span class="en">Prepare enquiry</span></button></div>
+          <p class="full note" style="margin:0"><span class="de">Deine Angaben nutzen wir nur, um deine Anfrage zu beantworten.</span><span class="en">We only use your details to answer your enquiry.</span></p>
+        </form>
+        <div class="out" id="sent" hidden role="status">
+          <h3><span class="de">Danke für deine Anfrage</span><span class="en">Thank you for your enquiry</span></h3>
+          <p><span class="de">Sie ist bei uns angekommen. Wir melden uns so bald wie möglich per E-Mail.</span><span class="en">We have received it and will reply by email as soon as possible.</span></p>
+        </div>
+        <div class="out" id="out" hidden>
+          <h3><span class="de">Deine Anfrage ist bereit</span><span class="en">Your enquiry is ready</span></h3>
+          <p class="note" id="failNote" hidden><span class="de">Das Senden hat nicht geklappt. Bitte schicke den Text per E-Mail.</span><span class="en">Sending did not work. Please send the text by email.</span></p>
+          <p><span class="de">Sie wurde noch nicht gesendet. Kopiere den Text und schicke ihn an <strong>ferienwohnungbruelisauer@gmail.com</strong>.</span><span class="en">It has not been sent yet. Copy the text and send it to <strong>ferienwohnungbruelisauer@gmail.com</strong>.</span></p>
+          <pre id="outText"></pre>
+          <div class="row">
+            <button class="btn dark" type="button" id="copy"><span class="de">Text kopieren</span><span class="en">Copy text</span></button>
+            <a class="btn line" id="mailto" href="#"><span class="de">Im Mailprogramm öffnen</span><span class="en">Open in mail app</span></a>
+            <span class="note" id="copied" hidden><span class="de">Kopiert</span><span class="en">Copied</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint" id="fragen">
+    <div class="wrap">
+      <h2><span class="de">Häufige Fragen</span><span class="en">Frequently asked questions</span></h2>
+      <div class="faq">
+        <details><summary><span><span class="de">Wie reserviere ich die Wohnung?</span><span class="en">How do I reserve the apartment?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Schicke uns oben eine Anfrage mit deinen Reisedaten. Wir antworten persönlich per E-Mail, und die Reservierung gilt, sobald du bestätigt hast.</span><span class="en">Send us an enquiry above with your dates. We reply personally by email, and the reservation applies once you have confirmed.</span></p></details>
+        <details><summary><span><span class="de">Für wie viele Personen ist die Wohnung?</span><span class="en">How many people does the apartment sleep?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Bis zu sieben Gäste: fünf in Betten (zwei Doppelbetten und ein Einzelbett) und zwei auf der Couch.</span><span class="en">Up to seven guests: five in beds (two double beds and one single bed) and two on the sofa.</span></p></details>
+        <details><summary><span><span class="de">Wann ist Check-in und Check-out?</span><span class="en">When are check-in and check-out?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="todo"><span class="de">Zeiten folgen.</span><span class="en">Times to follow.</span></span></p></details>
+        <details><summary><span><span class="de">Sind Haustiere erlaubt?</span><span class="en">Are pets allowed?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Haustiere sind nach Absprache möglich. Schreib uns dazu bitte in deiner Anfrage.</span><span class="en">Pets are possible on request. Please mention it in your enquiry.</span></p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Ferienwohnung Brülisauer</h3>
+        <p><span class="de">Brülisau, Appenzell Innerrhoden</span><span class="en">Brülisau, Appenzell Innerrhoden</span><br>ferienwohnungbruelisauer@gmail.com</p>
+      </div>
+      <div id="impressum">
+        <h3>Impressum</h3>
+        <p><span class="todo">Vorname Nachname</span><br><span class="todo">Strasse Nr., PLZ Ort</span></p>
+      </div>
+      <div id="datenschutz">
+        <h3><span class="de">Datenschutz</span><span class="en">Privacy</span></h3>
+        <p><span class="de">Angaben im Anfrageformular werden nur verwendet, um deine Anfrage zu beantworten. Das Formular wird über den Dienst Web3Forms übermittelt. Schriftarten werden von Google Fonts geladen, dabei wird deine IP-Adresse an Google übertragen. Die Website wird bei GitHub Pages gehostet.</span><span class="en">Details in the enquiry form are only used to answer your enquiry. The form is transmitted via the service Web3Forms. Fonts are loaded from Google Fonts, which transmits your IP address to Google. The website is hosted on GitHub Pages.</span></p>
+      </div>
+    </div>
+    <div class="copy">© <span id="year"></span> Ferienwohnung Brülisauer</div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto / Photo">
+  <button type="button" aria-label="Schliessen / Close"><svg class="ic"><use href="#i-close"/></svg></button>
+  <img src="" alt="">
+</div>
+
+<script>
+(function () {
+  // Belegte Zeiträume als [Anreise, Abreise]. Der Abreisetag bleibt frei. Das sind Beispieldaten.
+  var BOOKED = [["2026-11-06", "2026-11-09"], ["2026-11-20", "2026-11-23"], ["2026-12-26", "2027-01-02"]];
+  var MONTHS = {
+    de: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
+    en: ["January","February","March","April","May","June","July","August","September","October","November","December"]
+  };
+  var DOW = { de: ["Mo","Di","Mi","Do","Fr","Sa","So"], en: ["Mo","Tu","We","Th","Fr","Sa","Su"] };
+  var lang = ((navigator.language || "de").slice(0, 2) === "en") ? "en" : "de";
+
+  function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+  function parse(s) { var p = s.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function fmt(k) { return parse(k).toLocaleDateString(lang === "de" ? "de-CH" : "en-GB", { day: "2-digit", month: "2-digit", year: "numeric" }); }
+
+  var bookedSet = {};
+  BOOKED.forEach(function (r) {
+    for (var d = parse(r[0]), end = parse(r[1]); d < end; d.setDate(d.getDate() + 1)) bookedSet[iso(d)] = true;
+  });
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  var thisMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  var view = new Date(thisMonth);
+  var arr = null, dep = null;
+
+  function hasBooked(a, b) {
+    for (var d = parse(a); d < parse(b); d.setDate(d.getDate() + 1)) if (bookedSet[iso(d)]) return true;
+    return false;
+  }
+  function updateSummary() {
+    var el = document.getElementById("selText"), de = lang === "de";
+    if (arr && dep) {
+      var n = Math.round((parse(dep) - parse(arr)) / 86400000);
+      el.textContent = fmt(arr) + " – " + fmt(dep) + ", " + n + (de ? (n === 1 ? " Nacht" : " Nächte") : (n === 1 ? " night" : " nights"));
+    } else if (arr) {
+      el.textContent = (de ? "Anreise " : "Arrival ") + fmt(arr) + (de ? ". Wähle jetzt die Abreise." : ". Now pick your departure.");
+    } else {
+      el.textContent = de ? "Noch keine Daten gewählt." : "No dates selected yet.";
+    }
+  }
+  function render() {
+    var host = document.getElementById("months"); host.innerHTML = "";
+    var n = host.parentNode.clientWidth >= 620 ? 2 : 1;
+    var firstMonth = view;
+    document.getElementById("calTitle").textContent = MONTHS[lang][firstMonth.getMonth()] + " " + firstMonth.getFullYear() + (n === 2 ? " – " + MONTHS[lang][(firstMonth.getMonth() + 1) % 12] : "");
+    document.getElementById("prev").disabled = view <= thisMonth;
+    for (var m = 0; m < n; m++) {
+      var first = new Date(view.getFullYear(), view.getMonth() + m, 1);
+      var box = document.createElement("div"); box.className = "mon";
+      var h = document.createElement("h3"); h.textContent = MONTHS[lang][first.getMonth()] + " " + first.getFullYear(); box.appendChild(h);
+      var g = document.createElement("div"); g.className = "grid";
+      DOW[lang].forEach(function (x) { var e = document.createElement("div"); e.className = "dow"; e.textContent = x; g.appendChild(e); });
+      var offset = (first.getDay() + 6) % 7;
+      for (var i = 0; i < offset; i++) g.appendChild(document.createElement("div"));
+      var days = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
+      for (var d = 1; d <= days; d++) {
+        var date = new Date(first.getFullYear(), first.getMonth(), d), key = iso(date);
+        var b = document.createElement("button"); b.type = "button"; b.className = "day"; b.textContent = d; b.dataset.d = key;
+        if (date < today) b.disabled = true;
+        else if (bookedSet[key]) { b.classList.add("booked"); b.disabled = true; }
+        if (key === arr || key === dep) b.classList.add("edge");
+        if (arr && dep && key > arr && key < dep) b.classList.add("inrange");
+        g.appendChild(b);
+      }
+      box.appendChild(g); host.appendChild(box);
+    }
+    updateSummary();
+  }
+  function syncForm() {
+    document.getElementById("f-from").value = arr || "";
+    document.getElementById("f-to").value = dep || "";
+  }
+  document.getElementById("months").addEventListener("click", function (e) {
+    var b = e.target.closest(".day"); if (!b || b.disabled) return;
+    var k = b.dataset.d;
+    if (!arr || dep) { arr = k; dep = null; }
+    else if (k > arr && !hasBooked(arr, k)) { dep = k; }
+    else { arr = k; dep = null; }
+    syncForm(); render();
+  });
+  document.getElementById("prev").addEventListener("click", function () { if (view > thisMonth) { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); render(); } });
+  document.getElementById("next").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); render(); });
+  ["f-from", "f-to"].forEach(function (id) {
+    document.getElementById(id).addEventListener("change", function () {
+      var a = document.getElementById("f-from").value, d = document.getElementById("f-to").value;
+      arr = a || null; dep = (a && d && d > a) ? d : null;
+      if (arr) view = new Date(parse(arr).getFullYear(), parse(arr).getMonth(), 1);
+      render();
+    });
+  });
+  window.addEventListener("resize", render);
+
+  function setLang(l) {
+    lang = l; document.documentElement.setAttribute("data-lang", l); document.documentElement.lang = l;
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.set === l ? "true" : "false"); });
+    render();
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.dataset.set); }); });
+
+  var burger = document.getElementById("burger"), nav = document.getElementById("nav");
+  burger.addEventListener("click", function () {
+    var open = nav.classList.toggle("open"); burger.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) { nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); } });
+
+  // Fotos vergrössern
+  var lb = document.getElementById("lb"), lbImg = lb.querySelector("img");
+  document.querySelectorAll("[data-zoom]").forEach(function (f) {
+    f.addEventListener("click", function () {
+      var im = f.querySelector("img"); if (!im) return;
+      lbImg.src = im.src; lbImg.alt = im.alt; lb.hidden = false; document.body.style.overflow = "hidden"; lb.querySelector("button").focus();
+    });
+  });
+  function closeLb() { lb.hidden = true; document.body.style.overflow = ""; }
+  lb.addEventListener("click", function (e) { if (e.target === lb || e.target.closest("button")) closeLb(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !lb.hidden) closeLb(); });
+
+  // Formular
+  var MAIL = "ferienwohnungbruelisauer@gmail.com";
+  // Hier den kostenlosen Schlüssel von web3forms.com eintragen:
+  var ACCESS_KEY = "HIER_WEB3FORMS_SCHLUESSEL_EINTRAGEN";
+  var keyReady = ACCESS_KEY.indexOf("HIER_") !== 0;
+  if (keyReady) {
+    document.getElementById("submitBtn").innerHTML = '<span class="de">Anfrage senden</span><span class="en">Send enquiry</span>';
+  }
+  function showFallback(text, subject, failed) {
+    document.getElementById("outText").textContent = text;
+    document.getElementById("mailto").href = "mailto:" + MAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text);
+    document.getElementById("failNote").hidden = !failed;
+    document.getElementById("out").hidden = false;
+    document.getElementById("copied").hidden = true;
+    document.getElementById("out").scrollIntoView({ block: "nearest" });
+  }
+  document.getElementById("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (document.getElementById("f-bot").checked) return;
+    var v = function (id) { return document.getElementById(id).value.trim(); };
+    var de = lang === "de";
+    var lines = de
+      ? ["Anfrage Ferienwohnung Brülisauer", "", "Name: " + v("f-name"), "E-Mail: " + v("f-mail"), "Telefon: " + (v("f-tel") || "-"), "Anreise: " + v("f-from"), "Abreise: " + v("f-to"), "Gäste: " + v("f-pers"), "", v("f-msg")]
+      : ["Enquiry Ferienwohnung Brülisauer", "", "Name: " + v("f-name"), "Email: " + v("f-mail"), "Phone: " + (v("f-tel") || "-"), "Arrival: " + v("f-from"), "Departure: " + v("f-to"), "Guests: " + v("f-pers"), "", v("f-msg")];
+    var text = lines.join("\n");
+    var subject = de ? "Anfrage Ferienwohnung" : "Enquiry holiday apartment";
+    if (!keyReady) { showFallback(text, subject, false); return; }
+    var btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ access_key: ACCESS_KEY, subject: subject + " - " + v("f-name"), from_name: v("f-name"), name: v("f-name"), email: v("f-mail"), message: text })
+    }).then(function (r) { return r.json(); }).then(function (res) {
+      btn.disabled = false;
+      if (res && res.success) {
+        document.getElementById("form").hidden = true;
+        document.getElementById("out").hidden = true;
+        document.getElementById("sent").hidden = false;
+        document.getElementById("sent").scrollIntoView({ block: "nearest" });
+      } else { showFallback(text, subject, true); }
+    }).catch(function () { btn.disabled = false; showFallback(text, subject, true); });
+  });
+  document.getElementById("copy").addEventListener("click", function () {
+    var text = document.getElementById("outText").textContent;
+    var done = function () { document.getElementById("copied").hidden = false; };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("outText"));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (err) { fallback(); }
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  setLang(lang);
+})();
+</script>
+</body>
+</html>
