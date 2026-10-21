@@ -202,6 +202,36 @@ footer a { color: #fff; }
 .foot-grid p { max-width: 44ch; }
 .copy { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: .85rem; color: rgba(255,255,255,.55); }
 
+
+/* Ferienkarte */
+.gift { display: flex; gap: 20px 28px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--brand); color: var(--brand-fg); border-radius: 12px; padding: clamp(20px, 4vw, 32px); margin-top: 28px; }
+.gift h3 { font-size: 1.55rem; margin: 0 0 6px; }
+.gift p { margin: 0; opacity: .92; max-width: 52ch; }
+.gift .todo { background: var(--gold); color: var(--gold-fg); padding: 0 8px; }
+.kcols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 28px; }
+.kcols h3 { font-size: 1.1rem; margin-bottom: 10px; }
+.kcols .rules { margin-top: 0; }
+.kcols .rules li { line-height: 1.45; }
+.seasons { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); margin-top: 28px; }
+.seasons h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.seasons h3 .ic { color: var(--link); }
+.seasons .rules { margin-top: 0; }
+.seasons .rules li, .spot p { line-height: 1.5; }
+.tiles { grid-template-columns: repeat(5, 1fr); }
+.tiles .tile { padding-right: 16px; }
+@media (max-width: 1140px) {
+  .burger { display: inline-flex; }
+  .nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px 20px 22px; }
+  .nav.open { display: flex; }
+  .head-in { position: relative; }
+}
+@media (max-width: 1000px) {
+  .tile:nth-child(odd) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 760px) {
+  .kcols, .seasons { grid-template-columns: 1fr; }
+}
+
 /* Seiten-Register */
 .js .page { display: none; }
 .js .page.active { display: block; }
@@ -212,12 +242,13 @@ footer a { color: #fff; }
 .tile + .tile { padding-left: 22px; border-left: 1px solid var(--line); }
 .tile .ic { color: var(--link); width: 2em; height: 2em; margin-bottom: 10px; }
 .tile h3 { margin-bottom: 4px; }
+.tiles { grid-template-columns: repeat(5, 1fr); }
 .tile p { margin: 0; color: var(--muted); }
 .tile:hover h3 { color: var(--link); text-decoration: underline; text-underline-offset: 4px; }
 
 @media (max-width: 1000px) {
   .tiles { grid-template-columns: repeat(2, 1fr); }
-  .tile:nth-child(3) { padding-left: 0; border-left: 0; }
+  .tile:nth-child(odd) { padding-left: 0; border-left: 0; }
   .tile:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
 @media (max-width: 760px) {
@@ -286,6 +317,7 @@ footer a { color: #fff; }
       <a href="#wohnung"><span class="de">Wohnung</span><span class="en">Apartment</span></a>
       <a href="#lage"><span class="de">Lage</span><span class="en">Location</span></a>
       <a href="#preise"><span class="de">Preise und Infos</span><span class="en">Prices and info</span></a>
+      <a href="#ferienkarte"><span class="de">Ferienkarte</span><span class="en">Holiday card</span></a>
       <a href="#kalender"><span class="de">Verfügbarkeit</span><span class="en">Availability</span></a>
       <span class="lang" role="group" aria-label="Sprache / Language">
         <button type="button" data-set="de" aria-pressed="true">DE</button>
@@ -341,6 +373,7 @@ footer a { color: #fff; }
         <a class="tile" href="#wohnung"><svg class="ic"><use href="#i-door"/></svg><h3><span class="de">Wohnung</span><span class="en">Apartment</span></h3><p><span class="de">Zimmer, Betten und Ausstattung</span><span class="en">Rooms, beds and amenities</span></p></a>
         <a class="tile" href="#lage"><svg class="ic"><use href="#i-mountain"/></svg><h3><span class="de">Lage</span><span class="en">Location</span></h3><p><span class="de">Wandern und Ausflüge im Alpstein</span><span class="en">Hiking and day trips in the Alpstein</span></p></a>
         <a class="tile" href="#preise"><svg class="ic"><use href="#i-check"/></svg><h3><span class="de">Preise und Infos</span><span class="en">Prices and info</span></h3><p><span class="de">Preise, Zeiten und häufige Fragen</span><span class="en">Prices, times and FAQ</span></p></a>
+        <a class="tile" href="#ferienkarte"><svg class="ic"><use href="#i-cable"/></svg><h3><span class="de">Ferienkarte</span><span class="en">Holiday card</span></h3><p><span class="de">Bergbahnen, Museen und Bäder gratis</span><span class="en">Cable cars, museums and pools for free</span></p></a>
         <a class="tile" href="#kalender"><svg class="ic"><use href="#i-calendar"/></svg><h3><span class="de">Verfügbarkeit</span><span class="en">Availability</span></h3><p><span class="de">Freie Tage im Kalender</span><span class="en">Free dates in the calendar</span></p></a>
       </div>
     </div>
@@ -357,7 +390,7 @@ footer a { color: #fff; }
           <div class="points">
             <div><svg class="ic"><use href="#i-mountain"/></svg><div><b><span class="de">Wandern ab der Haustür</span><span class="en">Hiking from your door</span></b><span class="t"><span class="de">Brülisau ist ein Ausgangspunkt für Touren im Alpstein.</span><span class="en">Brülisau is a starting point for tours in the Alpstein.</span></span></div></div>
             <div><svg class="ic"><use href="#i-chat"/></svg><div><b><span class="de">Direkt beim Gastgeber anfragen</span><span class="en">Enquire directly with your host</span></b><span class="t"><span class="de">Du bekommst eine persönliche Antwort, ohne Online-Buchungsportal.</span><span class="en">You get a personal reply, without a booking portal.</span></span></div></div>
-            <div><svg class="ic"><use href="#i-check"/></svg><div><b><span class="de">Appenzeller Ferienkarte inklusive</span><span class="en">Appenzeller holiday card included</span></b><span class="t"><span class="de">Kostenlose oder vergünstigte Bergbahnen, Museen, Freibad und Rodelbahn.</span><span class="en">Free or discounted cable cars, museums, outdoor pool and toboggan run.</span></span></div></div>
+            <div><svg class="ic"><use href="#i-check"/></svg><div><b><span class="de">Appenzeller Ferienkarte gratis dazu</span><span class="en">Appenzeller holiday card free</span></b><span class="t"><span class="de">Ab <span class="todo">__</span> Nächten: Bergbahnen, Museen, Bäder und mehr. <a href="#ferienkarte">Alle Angebote ansehen</a></span><span class="en">From <span class="todo">__</span> nights: cable cars, museums, pools and more. <a href="#ferienkarte">See all offers</a></span></span></div></div>
           </div>
         </div>
         <div class="ph" style="cursor:default"><div class="fb"><svg class="ic"><use href="#i-image"/></svg><span><span class="de">Foto folgt</span><span class="en">Photo coming soon</span></span></div><img src="wohnzimmer.jpg" alt="Wohnzimmer / Living room" onerror="this.parentNode.classList.add('noimg');this.remove()"></div>
@@ -462,6 +495,109 @@ footer a { color: #fff; }
 
   </div>
 
+  <div class="page" data-page="ferienkarte">
+  <section class="sec">
+    <div class="wrap">
+      <h2><span class="de">Appenzeller Ferienkarte</span><span class="en">Appenzeller holiday card</span></h2>
+      <p class="lead"><span class="de">Mit der Ferienkarte erhältst du über 40 Angebote in der Region gratis. Dazu gehören Bergbahnen, Museen, Bäder und Ausflüge.</span><span class="en">With the holiday card you get over 40 offers in the region for free. They include cable cars, museums, pools and excursions.</span></p>
+
+      <div class="gift">
+        <div>
+          <h3><span class="de">Bei uns gratis ab <span class="todo">__</span> Nächten</span><span class="en">Free with us from <span class="todo">__</span> nights</span></h3>
+          <p><span class="de">Erwähne die Ferienkarte in deiner Anfrage. Wir geben sie dir bei der Reservation mit.</span><span class="en">Mention the holiday card in your enquiry. We give it to you when you reserve.</span></p>
+        </div>
+        <a class="btn" href="#anfrage"><span class="de">Jetzt anfragen</span><span class="en">Send an enquiry</span></a>
+      </div>
+
+      <div class="rooms">
+        <div class="room"><div class="beds"><svg class="ic"><use href="#i-check"/></svg></div><h3><span class="de">Über 40 Angebote</span><span class="en">Over 40 offers</span></h3><p><span class="de">Das ganze Jahr und je nach Saison</span><span class="en">All year and by season</span></p></div>
+        <div class="room"><div class="beds"><svg class="ic"><use href="#i-users"/></svg></div><h3><span class="de">Für alle Gäste ab 6 Jahren</span><span class="en">For all guests aged 6 and over</span></h3><p><span class="de">Erwachsene und Kinder</span><span class="en">Adults and children</span></p></div>
+        <div class="room"><div class="beds"><svg class="ic"><use href="#i-calendar"/></svg></div><h3><span class="de">Bei der Reservation fragen</span><span class="en">Ask when you reserve</span></h3><p><span class="de">Laut appenzell.ch gilt sie ab 3 Nächten in Folge am selben Ort</span><span class="en">According to appenzell.ch it applies from 3 consecutive nights in the same place</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <h2><span class="de">Bergbahnen und Verkehr</span><span class="en">Cable cars and transport</span></h2>
+      <p class="lead"><span class="de">Der Hohe Kasten startet direkt in Brülisau.</span><span class="en">The Hoher Kasten cable car starts right in Brülisau.</span></p>
+      <div class="spots">
+        <div class="spot"><svg class="ic"><use href="#i-cable"/></svg><div><h3>Hoher Kasten</h3><p><span class="de">Luftseilbahn ab Brülisau mit Drehrestaurant: 2 Einzelfahrten oder 1 Berg- und Talfahrt.</span><span class="en">Cable car from Brülisau with the revolving restaurant: 2 single trips or 1 return trip.</span></p></div></div>
+        <div class="spot"><svg class="ic"><use href="#i-cable"/></svg><div><h3>Kronberg</h3><p><span class="de">Luftseilbahn ab Jakobsbad: 2 Einzelfahrten oder 1 Berg- und Talfahrt.</span><span class="en">Cable car from Jakobsbad: 2 single trips or 1 return trip.</span></p></div></div>
+        <div class="spot"><svg class="ic"><use href="#i-cable"/></svg><div><h3>Ebenalp</h3><p><span class="de">Luftseilbahn ab Wasserauen: 2 Einzelfahrten oder 1 Berg- und Talfahrt.</span><span class="en">Cable car from Wasserauen: 2 single trips or 1 return trip.</span></p></div></div>
+        <div class="spot"><svg class="ic"><use href="#i-car"/></svg><div><h3>Öffentlicher Verkehr</h3><p><span class="de">Gratis in 21 Zonen des Tarifverbunds Ostwind rund um Appenzell, 2. Klasse. Der Rufbus PubliCar kostet 5 Franken pro Person extra und muss reserviert werden.</span><span class="en">Free in 21 zones of the Ostwind fare network around Appenzell, 2nd class. The on-demand bus PubliCar costs an extra CHF 5 per person and must be booked.</span></p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2><span class="de">Das ganze Jahr</span><span class="en">All year round</span></h2>
+      <div class="kcols">
+        <div><h3><span class="de">Museen mit freiem Eintritt</span><span class="en">Museums with free entry</span></h3>
+          <ul class="rules">
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Kunsthalle Appenzell</span><span class="en">Kunsthalle Appenzell</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Kunstmuseum Appenzell</span><span class="en">Kunstmuseum Appenzell</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Museum Appenzell</span><span class="en">Museum Appenzell</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Museum Heiden</span><span class="en">Museum Heiden</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Museum Henry Dunant, Heiden</span><span class="en">Museum Henry Dunant, Heiden</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Museum Herisau</span><span class="en">Museum Herisau</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Appenzeller Volkskunde-Museum, Stein</span><span class="en">Appenzeller Volkskunde-Museum, Stein</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Zeughaus Teufen</span><span class="en">Zeughaus Teufen</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Brauchtumsmuseum Urnäsch</span><span class="en">Brauchtumsmuseum Urnäsch</span></li>
+          </ul></div>
+        <div><h3><span class="de">Bäder und Sport</span><span class="en">Pools and sport</span></h3>
+          <ul class="rules">
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Hallenbad Appenzell</span><span class="en">Indoor pool Appenzell</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Appenzeller Heilbad Heiden: 1 Eintritt für 3 Stunden</span><span class="en">Appenzeller Heilbad Heiden: 1 entry for 3 hours</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Hallenbäder Herisau und Speicher</span><span class="en">Indoor pools Herisau and Speicher</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Boulderhalle «chletterai» Appenzell: 1 Eintritt</span><span class="en">Bouldering hall “chletterai” Appenzell: 1 entry</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Eishalle Herisau, inklusive Schlittschuhmiete</span><span class="en">Ice rink Herisau, skate rental included</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Tennishalle Appenzell: einmalig, mit Reservation</span><span class="en">Tennis hall Appenzell: one time, with reservation</span></li>
+          </ul></div>
+        <div><h3><span class="de">Erlebnisse und Genuss</span><span class="en">Experiences and tasting</span></h3>
+          <ul class="rules">
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Appenzeller Schaukäserei, Stein: 1 Eintritt</span><span class="en">Appenzeller show dairy, Stein: 1 entry</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Brauerei Locher: 1 Degustationsbier</span><span class="en">Locher brewery: 1 tasting beer</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Appenzeller Alpenbitter: 1 Geschenk</span><span class="en">Appenzeller Alpenbitter: 1 gift</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Gustarium Steinegg: Degustation</span><span class="en">Gustarium Steinegg: tasting</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">A. Vogel Museum, Teufen: Besucherzentrum</span><span class="en">A. Vogel Museum, Teufen: visitor centre</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Bärli-Biber-Welt, Weissbad</span><span class="en">Bärli-Biber-Welt, Weissbad</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Säntis Schwebebahn: Wochenprogramm</span><span class="en">Säntis cable car: weekly programme</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Kinderdorf Pestalozzi, Trogen: Ausstellung</span><span class="en">Pestalozzi Children's Village, Trogen: exhibition</span></li>
+          </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <h2><span class="de">Je nach Jahreszeit</span><span class="en">Depending on the season</span></h2>
+      <div class="seasons">
+        <div><h3><svg class="ic"><use href="#i-sun"/></svg><span class="de">April bis Oktober</span><span class="en">April to October</span></h3>
+          <ul class="rules">
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Freibäder in Appenzell, Gais, Heiden, Herisau, Rehetobel, Teufen, Waldstatt und Walzenhausen</span><span class="en">Outdoor pools in Appenzell, Gais, Heiden, Herisau, Rehetobel, Teufen, Waldstatt and Walzenhausen</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Bobbahn Kronberg: 1 Schlitten, von Montag bis Freitag</span><span class="en">Kronberg toboggan run: 1 sled, Monday to Friday</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">E-Bike, Mountainbike oder Citybike für einen Tag gegen Depot, nicht sonntags</span><span class="en">E-bike, mountain bike or city bike for a day against a deposit, not on Sundays</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Schifffahrt Rheineck–Rorschach: 1 Fahrt</span><span class="en">Boat trip Rheineck–Rorschach: 1 trip</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Museum Appenzeller Bahnen, Wasserauen</span><span class="en">Museum Appenzeller Bahnen, Wasserauen</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Wanderschuhe 1 Tag zum Testen, Sport Baumann Appenzell</span><span class="en">Hiking shoes to try for 1 day, Sport Baumann Appenzell</span></li>
+          </ul></div>
+        <div><h3><svg class="ic"><use href="#i-snow"/></svg><span class="de">November bis März</span><span class="en">November to March</span></h3>
+          <ul class="rules">
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Schneeschuhe und Stöcke für 1 Tag gegen Depot</span><span class="en">Snowshoes and poles for 1 day against a deposit</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Langlaufski für 1 Tag in Gonten gegen Depot, mit Reservation</span><span class="en">Cross-country skis for 1 day in Gonten against a deposit, with reservation</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Natureisbahn Glandenstein, Weissbad: Schlittschuhmiete gratis, mit Voranmeldung</span><span class="en">Natural ice rink Glandenstein, Weissbad: free skate rental, booking required</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Skilift Alpsteinblick, Gonten: 1 halber Tag</span><span class="en">Alpsteinblick ski lift, Gonten: 1 half day</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Skilift Horn: 1 Nachtskifahren, dienstags und freitags</span><span class="en">Horn ski lift: 1 night skiing session, Tuesdays and Fridays</span></li>
+            <li><svg class="ic"><use href="#i-check"/></svg><span class="de">Kinder-Skiunterricht in Schwende bis 12 Jahre, ohne Skipass, mit Anmeldung</span><span class="en">Children's ski lessons in Schwende up to age 12, ski pass not included, registration required</span></li>
+          </ul></div>
+      </div>
+      <p class="note" style="margin-top:32px"><span class="de">Nicht alle Leistungen sind immer verfügbar, und es gibt keinen Ersatz, wenn ein Angebot ausfällt. Einige Angebote brauchen eine Reservation. Alle Angaben stammen von <a href="https://www.appenzell.ch/de/unterkunft/appenzeller-ferienkarte.html" target="_blank" rel="noopener">appenzell.ch</a> (Stand Oktober 2026), dort findest du auch die vollständige Liste.</span><span class="en">Not all services are always available, and there is no compensation if an offer is unavailable. Some offers need a reservation. All details come from <a href="https://www.appenzell.ch/de/unterkunft/appenzeller-ferienkarte.html" target="_blank" rel="noopener">appenzell.ch</a> (as of October 2026), where you will also find the full list.</span></p>
+    </div>
+  </section>
+  </div>
+
   <div class="page" data-page="kalender">
   <section class="sec tint">
     <div class="wrap">
@@ -543,7 +679,7 @@ footer a { color: #fff; }
         <details><summary><span><span class="de">Wie reserviere ich die Wohnung?</span><span class="en">How do I reserve the apartment?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Schicke uns über «Anfragen» eine Nachricht mit deinen Reisedaten. Wir antworten persönlich per E-Mail, und die Reservierung gilt, sobald du bestätigt hast.</span><span class="en">Send us an enquiry on the “Enquire” page with your dates. We reply personally by email, and the reservation applies once you have confirmed.</span></p></details>
         <details><summary><span><span class="de">Für wie viele Personen ist die Wohnung?</span><span class="en">How many people does the apartment sleep?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Bis zu sieben Gäste: fünf in Betten (zwei Doppelbetten und ein Einzelbett) und zwei auf der Couch. Auf Wunsch stellen wir zusätzlich ein Kinderbett auf.</span><span class="en">Up to seven guests: five in beds (two double beds and one single bed) and two on the sofa. A cot can also be set up on request.</span></p></details>
         <details><summary><span><span class="de">Wann ist Check-in und Check-out?</span><span class="en">When are check-in and check-out?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="todo"><span class="de">Zeiten folgen.</span><span class="en">Times to follow.</span></span></p></details>
-        <details><summary><span><span class="de">Was ist die Appenzeller Ferienkarte?</span><span class="en">What is the Appenzeller holiday card?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Als Gast erhältst du damit kostenlosen oder vergünstigten Zugang zu Bergbahnen, Museen, Freibad und Rodelbahn. Sie ist in deinem Aufenthalt inbegriffen.</span><span class="en">As a guest you get free or discounted access to cable cars, museums, the outdoor pool and the toboggan run. It is included in your stay.</span></p></details>
+        <details><summary><span><span class="de">Was ist die Appenzeller Ferienkarte?</span><span class="en">What is the Appenzeller holiday card?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Als Gast erhältst du damit über 40 Angebote in der Region gratis, zum Beispiel Bergbahnen, Museen und Bäder. Bei uns bekommst du sie ab <span class="todo">__</span> Nächten dazu. Alle Angebote findest du auf der Seite <a href="#ferienkarte">Ferienkarte</a>.</span><span class="en">As a guest you get over 40 offers in the region for free, for example cable cars, museums and pools. With us you get it from <span class="todo">__</span> nights. You will find all offers on the <a href="#ferienkarte">holiday card</a> page.</span></p></details>
         <details><summary><span><span class="de">Sind Haustiere erlaubt?</span><span class="en">Are pets allowed?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Nein, Haustiere sind in der Wohnung nicht gestattet. Das Rauchen ist ebenfalls verboten. Auf dem Betrieb leben Katzen, Hunde und Kühe. Wenn du oder jemand in deiner Gruppe Allergien hat, schreib uns das bitte in deiner Anfrage.</span><span class="en">No, pets are not allowed in the apartment. Smoking is not allowed either. Cats, dogs and cows live on the farm. If you or anyone in your group has allergies, please tell us in your enquiry.</span></p></details>
       </div>
     </div>
@@ -745,7 +881,7 @@ footer a { color: #fff; }
     try { navigator.clipboard.writeText(text).then(done, fallback); } catch (err) { fallback(); }
   });
 
-  var PAGES = ["start", "wohnung", "lage", "preise", "kalender", "anfrage"];
+  var PAGES = ["start", "wohnung", "lage", "preise", "ferienkarte", "kalender", "anfrage"];
   function showPage() {
     var id = (location.hash || "").replace("#", "");
     if (PAGES.indexOf(id) < 0) id = "start";
