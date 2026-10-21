@@ -203,6 +203,25 @@ footer a { color: #fff; }
 .copy { margin-top: 36px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); font-size: .85rem; color: rgba(255,255,255,.55); }
 
 
+
+/* Preisrechner */
+.calc { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(20px, 4vw, 40px); align-items: start; margin-top: 24px; }
+.calc-in, .calc-out { background: var(--surface); border-radius: 12px; padding: clamp(18px, 3vw, 28px); box-shadow: 0 6px 24px rgba(8,30,28,.08); min-width: 0; }
+.calc-in { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.calc-in .full { grid-column: 1 / -1; }
+.calc-in small { font-weight: 400; color: var(--muted); }
+.calc-out table { width: 100%; border-collapse: collapse; }
+.calc-out td { padding: 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.calc-out td:last-child { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; padding-left: 14px; font-weight: 600; }
+.calc-out .det { display: block; font-size: .85rem; color: var(--muted); font-weight: 400; line-height: 1.4; }
+.calc-out .sum td { font-size: 1.35rem; font-weight: 700; border-top: 2px solid var(--fg); border-bottom: 0; padding-top: 16px; }
+.calc-out .sum td:first-child { font-family: var(--font-display); font-weight: 400; }
+.calc-out .actions { margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.calc-out .empty { color: var(--muted); margin: 0; }
+.warn { background: color-mix(in srgb, var(--gold) 26%, transparent); border-radius: 8px; padding: 10px 14px; margin: 0 0 14px; }
+@media (max-width: 900px) { .calc { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .calc-in { grid-template-columns: 1fr; } }
+
 /* Ferienkarte */
 .gift { display: flex; gap: 20px 28px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: var(--brand); color: var(--brand-fg); border-radius: 12px; padding: clamp(20px, 4vw, 32px); margin-top: 28px; }
 .gift h3 { font-size: 1.55rem; margin: 0 0 6px; }
@@ -473,18 +492,19 @@ footer a { color: #fff; }
         <div>
           <h2><span class="de">Preise</span><span class="en">Prices</span></h2>
           <table class="price">
-            <tr><td><span class="de">Pro Nacht, bis 2 Personen</span><span class="en">Per night, up to 2 guests</span></td><td><span class="todo">CHF ___</span></td></tr>
-            <tr><td><span class="de">Pro Nacht, jede weitere Person</span><span class="en">Per night, each additional guest</span></td><td><span class="todo">CHF ___</span></td></tr>
-            <tr><td><span class="de">Endreinigung</span><span class="en">Final cleaning</span></td><td><span class="todo">CHF ___</span></td></tr>
-            <tr><td><span class="de">Kurtaxe</span><span class="en">Tourist tax</span></td><td><span class="de">inbegriffen</span><span class="en">included</span></td></tr>
-            <tr><td><span class="de">Ermässigung für Kinder</span><span class="en">Discount for children</span></td><td><span class="de">auf Anfrage</span><span class="en">on request</span></td></tr>
+            <tr><td><span class="de">Erwachsene, pro Nacht</span><span class="en">Adults, per night</span></td><td data-price="adult"></td></tr>
+            <tr><td><span class="de">Kinder von 6 bis 16 Jahren, pro Nacht</span><span class="en">Children aged 6 to 16, per night</span></td><td data-price="child"></td></tr>
+            <tr><td><span class="de">Kleinkinder bis 5 Jahre, pro Nacht</span><span class="en">Toddlers up to age 5, per night</span></td><td data-price="toddler"></td></tr>
+            <tr><td><span class="de">Kurtaxe, pro Person ab 6 Jahren und Nacht</span><span class="en">Tourist tax, per person aged 6 and over and night</span></td><td data-price="tax"></td></tr>
+            <tr><td><span class="de">Endreinigung, einmalig</span><span class="en">Final cleaning, one-off</span></td><td data-price="cleaning"></td></tr>
             <tr><td><span class="de">Appenzeller Ferienkarte</span><span class="en">Appenzeller holiday card</span></td><td><span class="de">gratis ab 3 Nächten</span><span class="en">free from 3 nights</span></td></tr>
           </table>
+          <p class="note" style="margin-top:12px"><span class="todo"><span class="de">Die Preise sind noch Beispielwerte.</span><span class="en">The prices are still example values.</span></span></p>
         </div>
         <div>
           <h2><span class="de">Gut zu wissen</span><span class="en">Good to know</span></h2>
           <ul class="rules">
-            <li><svg class="ic"><use href="#i-calendar"/></svg><span class="de">Check-in ab <span class="todo">__:__</span> Uhr, Check-out bis <span class="todo">__:__</span> Uhr</span><span class="en">Check-in from <span class="todo">__:__</span>, check-out by <span class="todo">__:__</span></span></li>
+            <li><svg class="ic"><use href="#i-calendar"/></svg><span class="de">Check-in ab 16.00 Uhr, Check-out bis 11.00 Uhr</span><span class="en">Check-in from 4:00 pm, check-out by 11:00 am</span></li>
             <li><svg class="ic"><use href="#i-cable"/></svg><span class="de">Die Appenzeller Ferienkarte bekommst du automatisch, aber erst ab 3 Nächten in Folge. <a href="#ferienkarte">Alle Angebote ansehen</a></span><span class="en">You get the Appenzeller holiday card automatically, but only from 3 consecutive nights. <a href="#ferienkarte">See all offers</a></span></li>
             <li><svg class="ic"><use href="#i-calendar"/></svg><span class="de">Mindestaufenthalt <span class="todo">__</span> Nächte</span><span class="en">Minimum stay <span class="todo">__</span> nights</span></li>
             <li><svg class="ic"><use href="#i-nosmoke"/></svg><span class="de">Rauchen ist verboten</span><span class="en">Smoking is not allowed</span></li>
@@ -494,6 +514,23 @@ footer a { color: #fff; }
             <li><svg class="ic"><use href="#i-door"/></svg><span class="de">Die Wohnung liegt im 2. und 3. Stock. Die Deckenhöhe beträgt 1,92 Meter.</span><span class="en">The apartment is on the 2nd and 3rd floor. The ceiling height is 1.92 metres.</span></li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec tint" id="rechner">
+    <div class="wrap">
+      <h2><span class="de">Preisrechner</span><span class="en">Price calculator</span></h2>
+      <p class="lead"><span class="de">Gib deine Reisedaten und die Anzahl Gäste ein. Der Preis wird sofort berechnet.</span><span class="en">Enter your dates and the number of guests. The price is calculated straight away.</span></p>
+      <div class="calc">
+        <div class="calc-in">
+          <label><span><span class="de">Anreise</span><span class="en">Arrival</span></span><input id="c-from" type="date"></label>
+          <label><span><span class="de">Abreise</span><span class="en">Departure</span></span><input id="c-to" type="date"></label>
+          <label><span><span class="de">Erwachsene</span><span class="en">Adults</span></span><input id="c-adults" type="number" inputmode="numeric" min="0" max="7" value="2"></label>
+          <label><span><span class="de">Kinder <small>6 bis 16 Jahre</small></span><span class="en">Children <small>aged 6 to 16</small></span></span><input id="c-kids" type="number" inputmode="numeric" min="0" max="6" value="0"></label>
+          <label class="full"><span><span class="de">Kleinkinder <small>bis 5 Jahre</small></span><span class="en">Toddlers <small>up to age 5</small></span></span><input id="c-tod" type="number" inputmode="numeric" min="0" max="4" value="0"></label>
+        </div>
+        <div class="calc-out" id="calcOut" aria-live="polite"></div>
       </div>
     </div>
   </section>
@@ -731,7 +768,7 @@ footer a { color: #fff; }
       <div class="faq">
         <details><summary><span><span class="de">Wie reserviere ich die Wohnung?</span><span class="en">How do I reserve the apartment?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Schicke uns über «Anfragen» eine Nachricht mit deinen Reisedaten. Wir antworten persönlich per E-Mail, und die Reservierung gilt, sobald du bestätigt hast.</span><span class="en">Send us an enquiry on the “Enquire” page with your dates. We reply personally by email, and the reservation applies once you have confirmed.</span></p></details>
         <details><summary><span><span class="de">Für wie viele Personen ist die Wohnung?</span><span class="en">How many people does the apartment sleep?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Bis zu sieben Gäste: fünf in Betten (zwei Doppelbetten und ein Einzelbett) und zwei auf der Couch. Auf Wunsch stellen wir zusätzlich ein Kinderbett auf.</span><span class="en">Up to seven guests: five in beds (two double beds and one single bed) and two on the sofa. A cot can also be set up on request.</span></p></details>
-        <details><summary><span><span class="de">Wann ist Check-in und Check-out?</span><span class="en">When are check-in and check-out?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="todo"><span class="de">Zeiten folgen.</span><span class="en">Times to follow.</span></span></p></details>
+        <details><summary><span><span class="de">Wann ist Check-in und Check-out?</span><span class="en">When are check-in and check-out?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Check-in ist ab 16.00 Uhr, Check-out bis 11.00 Uhr.</span><span class="en">Check-in is from 4:00 pm, check-out by 11:00 am.</span></p></details>
         <details><summary><span><span class="de">Was ist die Appenzeller Ferienkarte?</span><span class="en">What is the Appenzeller holiday card?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Als Gast erhältst du damit über 40 Angebote in der Region gratis, zum Beispiel Bergbahnen, Museen und Bäder. Bei uns bekommst du sie ab 3 Nächten dazu. Alle Angebote findest du auf der Seite <a href="#ferienkarte">Ferienkarte</a>.</span><span class="en">As a guest you get over 40 offers in the region for free, for example cable cars, museums and pools. With us you get it from 3 nights. You will find all offers on the <a href="#ferienkarte">holiday card</a> page.</span></p></details>
         <details><summary><span><span class="de">Sind Haustiere erlaubt?</span><span class="en">Are pets allowed?</span></span><svg class="ic"><use href="#i-chev"/></svg></summary><p><span class="de">Nein, Haustiere sind in der Wohnung nicht gestattet. Das Rauchen ist ebenfalls verboten. Auf dem Betrieb leben Katzen, Hunde und Kühe. Wenn du oder jemand in deiner Gruppe Allergien hat, schreib uns das bitte in deiner Anfrage.</span><span class="en">No, pets are not allowed in the apartment. Smoking is not allowed either. Cats, dogs and cows live on the farm. If you or anyone in your group has allergies, please tell us in your enquiry.</span></p></details>
       </div>
@@ -833,8 +870,9 @@ footer a { color: #fff; }
     updateSummary();
   }
   function syncForm() {
-    document.getElementById("f-from").value = arr || "";
-    document.getElementById("f-to").value = dep || "";
+    ["f-from", "c-from"].forEach(function (id) { document.getElementById(id).value = arr || ""; });
+    ["f-to", "c-to"].forEach(function (id) { document.getElementById(id).value = dep || ""; });
+    calc();
   }
   document.getElementById("months").addEventListener("click", function (e) {
     var b = e.target.closest(".day"); if (!b || b.disabled) return;
@@ -846,14 +884,18 @@ footer a { color: #fff; }
   });
   document.getElementById("prev").addEventListener("click", function () { if (view > thisMonth) { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); render(); } });
   document.getElementById("next").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); render(); });
-  ["f-from", "f-to"].forEach(function (id) {
-    document.getElementById(id).addEventListener("change", function () {
-      var a = document.getElementById("f-from").value, d = document.getElementById("f-to").value;
-      arr = a || null; dep = (a && d && d > a) ? d : null;
-      if (arr) view = new Date(parse(arr).getFullYear(), parse(arr).getMonth(), 1);
-      render();
+  [["f-from", "f-to"], ["c-from", "c-to"]].forEach(function (pair) {
+    pair.forEach(function (id) {
+      document.getElementById(id).addEventListener("change", function () {
+        var a = document.getElementById(pair[0]).value, d = document.getElementById(pair[1]).value;
+        if (a && d && d <= a) { arr = a; dep = null; render(); calc(); return; }
+        arr = a || null; dep = (a && d) ? d : null;
+        if (arr) view = new Date(parse(arr).getFullYear(), parse(arr).getMonth(), 1);
+        syncForm(); render();
+      });
     });
   });
+  ["f-from", "f-to", "c-from", "c-to"].forEach(function (id) { document.getElementById(id).min = iso(today); });
   window.addEventListener("resize", render);
 
   function setLang(l) {
@@ -903,8 +945,8 @@ footer a { color: #fff; }
     var v = function (id) { return document.getElementById(id).value.trim(); };
     var de = lang === "de";
     var lines = de
-      ? ["Anfrage Ferienwohnung Brülisauer", "", "Name: " + v("f-name"), "E-Mail: " + v("f-mail"), "Telefon: " + (v("f-tel") || "-"), "Anreise: " + v("f-from"), "Abreise: " + v("f-to"), "Gäste: " + v("f-pers"), "", v("f-msg")]
-      : ["Enquiry Ferienwohnung Brülisauer", "", "Name: " + v("f-name"), "Email: " + v("f-mail"), "Phone: " + (v("f-tel") || "-"), "Arrival: " + v("f-from"), "Departure: " + v("f-to"), "Guests: " + v("f-pers"), "", v("f-msg")];
+      ? ["Anfrage Ferienwohnung Brülisauer", "", "Name: " + v("f-name"), "E-Mail: " + v("f-mail"), "Telefon: " + (v("f-tel") || "-"), "Anreise: " + v("f-from"), "Abreise: " + v("f-to"), "Gäste: " + v("f-pers")].concat(calcLine(true), ["", v("f-msg")])
+      : ["Enquiry Ferienwohnung Brülisauer", "", "Name: " + v("f-name"), "Email: " + v("f-mail"), "Phone: " + (v("f-tel") || "-"), "Arrival: " + v("f-from"), "Departure: " + v("f-to"), "Guests: " + v("f-pers")].concat(calcLine(false), ["", v("f-msg")]);
     var text = lines.join("\n");
     var subject = de ? "Anfrage Ferienwohnung" : "Enquiry holiday apartment";
     if (!keyReady) { showFallback(text, subject, false); return; }
@@ -946,6 +988,88 @@ footer a { color: #fff; }
     if (id === "kalender") render();
   }
   window.addEventListener("hashchange", showPage);
+
+  // ---------- Preise und Preisrechner ----------
+  // HIER die Preise anpassen (in Franken). Tabelle und Rechner nutzen dieselben Werte.
+  var P = {
+    adult: 40,      // Erwachsene, pro Nacht
+    child: 25,      // Kinder von 6 bis 16 Jahren, pro Nacht
+    toddler: 0,     // Kleinkinder bis 5 Jahre, pro Nacht (0 = gratis)
+    tax: 2.5,       // Kurtaxe pro Person ab 6 Jahren und Nacht
+    cleaning: 110   // Endreinigung, einmalig
+  };
+  var MAX_GUESTS = 7;
+  function t(de, en) { return '<span class="de">' + de + '</span><span class="en">' + en + '</span>'; }
+  function money(n) { return "CHF " + n.toLocaleString("de-CH", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  function quote(nights, ad, ch, to) {
+    var a = ad * nights * P.adult, c = ch * nights * P.child, k = to * nights * P.toddler;
+    var tax = (ad + ch) * nights * P.tax, cl = P.cleaning;
+    return { adults: a, kids: c, toddlers: k, tax: tax, cleaning: cl, total: a + c + k + tax + cl };
+  }
+  function fillPrices() {
+    document.querySelectorAll("[data-price]").forEach(function (el) {
+      var v = P[el.getAttribute("data-price")];
+      el.innerHTML = v === 0 ? t("gratis", "free") : money(v);
+    });
+  }
+  function num(id) { var n = parseInt(document.getElementById(id).value, 10); return isNaN(n) || n < 0 ? 0 : n; }
+  var lastCalc = null;
+  function calc() {
+    var out = document.getElementById("calcOut");
+    var a = document.getElementById("c-from").value, d = document.getElementById("c-to").value;
+    var ad = num("c-adults"), ch = num("c-kids"), to = num("c-tod");
+    lastCalc = null;
+    if (!a || !d) {
+      out.innerHTML = '<p class="empty">' + t("Wähle Anreise und Abreise, dann siehst du hier den Preis.", "Pick your arrival and departure and the price will appear here.") + '</p>';
+      return;
+    }
+    if (d <= a) {
+      out.innerHTML = '<p class="warn">' + t("Die Abreise muss nach der Anreise liegen.", "The departure must be after the arrival.") + '</p>';
+      return;
+    }
+    if (ad < 1) {
+      out.innerHTML = '<p class="warn">' + t("Bitte gib mindestens einen Erwachsenen an.", "Please enter at least one adult.") + '</p>';
+      return;
+    }
+    var n = Math.round((parse(d) - parse(a)) / 86400000);
+    var q = quote(n, ad, ch, to);
+    var nT = n + " " + (n === 1 ? t("Nacht", "night") : t("Nächte", "nights"));
+    var rows = "";
+    function row(labelHtml, detailHtml, amountHtml) {
+      rows += "<tr><td>" + labelHtml + '<span class="det">' + detailHtml + "</span></td><td>" + amountHtml + "</td></tr>";
+    }
+    row(t("Erwachsene", "Adults"), ad + " × " + nT + " × " + money(P.adult), money(q.adults));
+    if (ch > 0) row(t("Kinder (6 bis 16 Jahre)", "Children (6 to 16)"), ch + " × " + nT + " × " + money(P.child), money(q.kids));
+    if (to > 0) row(t("Kleinkinder (bis 5 Jahre)", "Toddlers (up to 5)"), to + " × " + nT + (P.toddler === 0 ? "" : " × " + money(P.toddler)), P.toddler === 0 ? t("gratis", "free") : money(q.toddlers));
+    row(t("Kurtaxe", "Tourist tax"), (ad + ch) + " " + t("Personen ab 6 Jahren", "persons aged 6 and over") + " × " + nT + " × " + money(P.tax), money(q.tax));
+    row(t("Endreinigung", "Final cleaning"), t("einmalig", "one-off"), money(q.cleaning));
+    var warn = "";
+    if (ad + ch > MAX_GUESTS) {
+      warn = '<p class="warn">' + t("Die Wohnung bietet Platz für bis zu " + MAX_GUESTS + " Gäste. Schreib uns, wenn ihr mehr seid.", "The apartment sleeps up to " + MAX_GUESTS + " guests. Write to us if you are more.") + "</p>";
+    }
+    var card = n >= 3
+      ? t("Die Appenzeller Ferienkarte ist bei diesem Aufenthalt gratis dabei.", "The Appenzeller holiday card is included with this stay.")
+      : t("Ab 3 Nächten ist die Appenzeller Ferienkarte gratis dabei.", "From 3 nights the Appenzeller holiday card is included.");
+    out.innerHTML = warn + "<table>" + rows + '<tr class="sum"><td>' + t("Total", "Total") + "</td><td>" + money(q.total) + "</td></tr></table>" +
+      '<p class="note" style="margin:14px 0 0">' + card + ' <a href="#ferienkarte">' + t("Alle Angebote", "All offers") + "</a></p>" +
+      '<p class="note" style="margin:8px 0 0">' + t("Das ist eine unverbindliche Berechnung. Den verbindlichen Preis bestätigen wir dir in unserer Antwort.", "This is a non-binding calculation. We confirm the final price in our reply.") + "</p>" +
+      '<div class="actions"><a class="btn" href="#anfrage" data-ask="1">' + t("Mit diesen Angaben anfragen", "Enquire with these details") + "</a></div>";
+    lastCalc = { nights: n, adults: ad, kids: ch, toddlers: to, total: q.total };
+  }
+  function calcLine(de) {
+    if (!lastCalc) return [];
+    var c = lastCalc, tot = c.total.toLocaleString("de-CH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return [de
+      ? "Preisrechner: Erwachsene " + c.adults + ", Kinder (6 bis 16) " + c.kids + ", Kleinkinder " + c.toddlers + ", Nächte " + c.nights + ", Preis CHF " + tot
+      : "Price calculator: adults " + c.adults + ", children (6 to 16) " + c.kids + ", toddlers " + c.toddlers + ", nights " + c.nights + ", price CHF " + tot];
+  }
+  document.getElementById("calcOut").addEventListener("click", function (e) {
+    if (!e.target.closest("[data-ask]") || !lastCalc) return;
+    document.getElementById("f-pers").value = String(Math.min(MAX_GUESTS, Math.max(1, lastCalc.adults + lastCalc.kids + lastCalc.toddlers)));
+  });
+  ["c-adults", "c-kids", "c-tod"].forEach(function (id) { document.getElementById(id).addEventListener("input", calc); });
+  fillPrices();
+  calc();
 
   document.getElementById("year").textContent = new Date().getFullYear();
   setLang(lang);
